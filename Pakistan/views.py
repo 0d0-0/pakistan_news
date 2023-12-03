@@ -1,8 +1,9 @@
 from django.shortcuts import render,HttpResponse,redirect
 from Pakistan.models   import  test   #导入数据库
-import requests
+import requests  
 import time
 from bs4 import BeautifulSoup
+from . import to_get_content
 # Create your views here.
 
 def welcome(request):
@@ -13,26 +14,14 @@ def catalogue(request):
     if request.method == "GET":
         return render(request,'catalogue.html')
 
-
 #具体内容用一个模板即可
 def history(request):
     if request.method == "GET":
-        headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
-    #header代理标头  有些网页没有会拒绝请求
-    #有些网站会重定向请求
-        response = requests.get('https://www.bilibili.com/',allow_redirects=True,headers=headers)  #向url发送请求
-    
-    
-        if response.status_code == 200:  #请求成功
-            soup = BeautifulSoup(response.content,'html.parser') 
-            # 解析网页内容  并获得所有内容
-        else :
-            print("失败")
-            time.sleep(1)  # 在失败的情况下休眠一秒 避免过于频繁
-            return HttpResponse("失败") 
-        times=[]
-        times=soup.find_all(class_='title-heading-left fusion-responsive-typography-calculated')      
-        for time in times:
-            test.objects.create(time)
+        soup=to_get_content.to_get_content(request,'https://storyofpakistan.com/events/the-mughal-empire/')
+        times=soup.find('h1')
+        #times=soup.find_all(class_='.title-heading-left fusion-responsive-typography-calculated')        
+        #for time in times:
+            #test.objects.create(time)
+        print(times)
         return render(request,'content.html',{"times":times})
 
