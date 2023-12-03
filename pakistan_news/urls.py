@@ -1,5 +1,5 @@
 """
-URL configuration for pakistan_news project.
+URL configuration for djangoProject project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from Pakistan import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('welcome/', views.welcome),
+    path('catalogue/', views.catalogue),
+    path('history/', views.history),
 ]
-
-#rlbsb
-#wxbbb
+                                                                                                                        

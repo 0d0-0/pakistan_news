@@ -1,0 +1,9 @@
+.img-distance {
+    display: flex;
+    justify-content: space-between;
+    /* 设置图片宽度 */
+    height: auto;
+    /* 根据宽度自动调整高度，保持比例 */
+    margin-bottom: 100px;   
+    /* 图片之间的上下边距 */
+}
