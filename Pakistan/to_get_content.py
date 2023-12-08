@@ -1,5 +1,5 @@
 from django.shortcuts import render,HttpResponse,redirect
-from Pakistan.models   import  test   #导入数据库
+from Pakistan.models   import  History   #导入数据库
 import requests
 import time
 from bs4 import BeautifulSoup
