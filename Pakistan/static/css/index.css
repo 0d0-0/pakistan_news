@@ -1,4 +1,4 @@
-/* .container{
+.container{
     max-width: 100%;
     min-height: 500px;
 
@@ -121,7 +121,7 @@ a.navbar-brand{
         text-align: center;
     }
 } 
-*/
+
 body {
     font-family: 'Noto Sans SC', sans-serif;
     background-color: #f7f7f7;
