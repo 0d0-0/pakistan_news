@@ -67,42 +67,124 @@
         <h3>目录<h6>(点击下方目录即可跳转到相应内容)</h6>
         </h3>
     </div>
-    <ul>
 
-        {% for coun in country %}
+    <!-- <ul>
+        {% for coun in countries %}
         <li>
-            <a href="#{{coun}}">{{coun}}</a>
-
+            <a href="#{{ coun }}">{{ coun }}</a>
             <ul>
                 {% for item in data_list %}
                 <li>
-                    <a href="#{{item.title}}">{{item.title}}</a>
+                    <a href="#{{ item.title }}">{{ item.title }}</a>
                 </li>
                 {% endfor %}
             </ul>
         </li>
         {% endfor %}
+    </ul> -->
+    <ul>
+        {% for country in countries %}
+        <li>
+            <a href="#{{ country }}">{{ country }}</a>
+            <ul>
+                {% for record in test_records %}
+                {% if record.country == country %}
+                <li>
+                    <a href="#{{ record.title }}">{{ record.title }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+        </li>
+        {% endfor %}
     </ul>
-    <div class="barlist">
-
-        {% for coun in country %}
-        <div class="listbox1" id="{{coun}}">
-            <h1 class="data1">{{coun}}</h1>
+    <!-- <div class="barlist">
+        {% for country in countries %}
+        <div class="listbox1" id="{{ country }}">
+            <h1 class="data1">{{ country }}</h1>
             <hr>
-
-            {% for item in data_list %}
+            {% for record in test_records %}
+            {% if record.country == country %}
             <div>
-                <h2 class="data2" i="{{item.title}}">{{item.title}}</h2>
+                <h2 class="data2" id="{{ record.title }}">
+                    <a href="#{{ record.title }}">{{ record.title }}</a>
+                </h2>
                 <div>
-                    <h5 class="data3">{{ item.text}}</h5>
+                    <h5 class="data3">{{ record.text }}</h5>
                 </div>
             </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <div class="pagination">
+            <span class="step-links">
+                <div>
+                    <span class="current">
+                        Page {{ data_list.number }} of {{ data_list.paginator.num_pages }}.
+                    </span>
+                </div>
+                {% if data_list.has_previous %}
+                <a href="?page={{ data_list.previous_page_number }}">&laquo; 上一页</a>
+                {% else %}
+                <span class="disabled">&laquo; 上一页</span>
+                {% endif %}
+    
+                {% if data_list.has_next %}
+                <a href="?page={{ data_list.next_page_number }}">下一页 &raquo;</a>
+                {% else %}
+                <span class="disabled">下一页 &raquo;</span>
+                {% endif %}
+            </span>
+        </div>
+        {% endfor %}
+    </div> -->
+    <div class="barlist">
+        {% for country in countries %}
+        <div class="listbox1" id="{{ country }}">
+            <h1 class="data1">{{ country }}</h1>
+            <hr>
+            {% for record in test_records %}
+            {% if record.country == country %}
+            <div>
+                <h2 class="data2" id="{{ record.title }}">
+                    {{ record.title }}
+                </h2>
+                <div>
+                    <h5 class="data3">{{ record.text }}</h5>
+                </div>
+            </div>
+            {% endif %}
             {% endfor %}
         </div>
         {% endfor %}
+        <div class="pagination">
+            <span class="step-links">
+                <div>
+                    <span class="current">
+                        Page {{ data_list.number }} of {{ data_list.paginator.num_pages }}.
+                    </span>
+                </div>
+                {% if data_list.has_previous %}
+                <a href="?page={{ data_list.previous_page_number }}&amp;country={{ countries|slice:"
+                    :data_list.previous_page_number"|last }}">
+                    &laquo; 上一页
+                </a>
+                {% else %}
+                <span class="disabled">&laquo; 上一页</span>
+                {% endif %}
 
+                {% if data_list.has_next %}
+                <a href="?page={{ data_list.next_page_number }}&amp;country={{ countries|slice:"
+                    :data_list.next_page_number"|last }}">
+                    下一页 &raquo;
+                </a>
+                {% else %}
+                <span class="disabled">下一页 &raquo;</span>
+                {% endif %}
+            </span>
+        </div>
     </div>
-    <div class="pagination">
+    <!-- <div class="pagination">
         <span class="step-links">
             <div>
                 <span class="current">
@@ -121,7 +203,8 @@
             <span class="disabled">下一页 &raquo;</span>
             {% endif %}
         </span>
-    </div>
+    </div> -->
+
 </body>
 
 </html>

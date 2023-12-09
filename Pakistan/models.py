@@ -20,6 +20,7 @@ def __str__(self):
     """返回一个表示条目的简单字符串"""
 class Test(models.Model):
     '''巴基斯坦的外交'''
+    country=models.TextField(verbose_name='国家',blank=True,null=True)
     title=models.TextField(verbose_name='标题',blank=True,null=True)
     text=models.TextField(verbose_name='外交内容',blank=True,null=True)
     time_now=models.DateTimeField(verbose_name='更新时间',default=datetime.now())
