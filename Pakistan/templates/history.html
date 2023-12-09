@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -82,6 +82,93 @@
             <hr>
             <div>
                 <p class="data2"><p>
+            </div>
+            <div>
+                <h5 class="data3">{{ item.text }}</h5>
+            </div>
+            <h6 class="data4">词条更新时间:{{ item.time_now }}</h6>
+            <hr>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="pagination">
+        <span class="step-links">
+            <div>
+                <span class="current">
+                    Page {{ data_list.number }} of {{ data_list.paginator.num_pages }}.
+                </span>
+            </div>
+            {% if data_list.has_previous %}
+            <a href="?page={{ data_list.previous_page_number }}">&laquo; 上一页</a>
+            {% else %}
+            <span class="disabled">&laquo; 上一页</span>
+            {% endif %}
+
+            {% if data_list.has_next %}
+            <a href="?page={{ data_list.next_page_number }}">下一页 &raquo;</a>
+            {% else %}
+            <span class="disabled">下一页 &raquo;</span>
+            {% endif %}
+        </span>
+    </div>
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>巴基斯坦历史大事纪</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    </link>
+    <link rel="stylesheet" href="../static/css/history.css">
+</head>
+
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="text-gray-700 py-4">
+        <div class="container mx-auto flex justify-between items-center px-6">
+            <div class="text-3xl font-bold">巴基斯坦の小站</div>
+            <nav>
+                <ul class="flex space-x-8">
+                    <li class="hover:text-black-500 hover:underline"><a href="http://127.0.0.1:8000/index/">首页</a></li>
+                    <li class="hover:bg-gray-200"><a href="http://127.0.0.1:8000/culture/">文化</a></li>
+                    <li class="hover:bg-gray-200"><a href="http://127.0.0.1:8000/history/">历史</a></li>
+                    <li class="hover:bg-gray-200"><a href="http://127.0.0.1:8000/diplomacy/">外交</a></li>
+                    <li class="hover:bg-gray-200">关于我们</li>
+                </ul>
+            </nav>
+            <button class="bg-gray-200 text-black py-2 px-4 rounded">登录</button>
+        </div>
+    </header>
+    <div class="bar">
+        <h1>The History of Pakistan</h1>
+    </div>
+    <div>
+        <h3>目录<h6>(点击下方目录即可跳转到相应内容)</h6>
+        </h3>
+    </div>
+    <ol>
+
+        {% for item in data_list %}
+        <li><a href="#{{item.id}}">{{item.times}}</a></li>
+        {% endfor %}
+
+    </ol>
+    <div class="barlist">
+
+        {% for item in data_list %}
+        <div class="listbox1" id="{{item.id}}">
+            <h2 class="data1">{{ item.times }}</h2>
+            <hr>
+            <div>
+                <p class="data2">
+                <p>
             </div>
             <div>
                 <h5 class="data3">{{ item.text }}</h5>

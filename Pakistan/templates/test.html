@@ -12,7 +12,7 @@
         content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
     <link rel="stylesheet" href="/CSS/history.css">
     <link rel="stylesheet" href="/CSS/common.css">
-    <title>巴基斯坦的历史</title>
+    <title>巴基斯坦外交大事纪</title>
 </head>
 
 <body>
@@ -61,35 +61,46 @@
         </div>
     </nav>
     <div class="bar">
-        <h1>The History of Pakistan</h1>
+        <h1>The Diplomacy of Pakistan</h1>
     </div>
     <div>
         <h3>目录<h6>(点击下方目录即可跳转到相应内容)</h6>
         </h3>
     </div>
-    <ol>
+    <ul>
 
-        {% for item in data_list %}
-        <li><a href="#{{item.id}}">{{item.times}}</a></li>
+        {% for coun in country %}
+        <li>
+            <a href="#{{coun}}">{{coun}}</a>
+
+            <ul>
+                {% for item in data_list %}
+                <li>
+                    <a href="#{{item.title}}">{{item.title}}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </li>
         {% endfor %}
-
-    </ol>
+    </ul>
     <div class="barlist">
 
-        {% for item in data_list %}
-        <div class="listbox1" id="{{item.id}}">
-            <h2 class="data1">{{ item.times }}</h2>
+        {% for coun in country %}
+        <div class="listbox1" id="{{coun}}">
+            <h1 class="data1">{{coun}}</h1>
             <hr>
+
+            {% for item in data_list %}
             <div>
-                <p class="data2"><p>
+                <h2 class="data2" i="{{item.title}}">{{item.title}}</h2>
+                <div>
+                    <h5 class="data3">{{ item.text}}</h5>
+                </div>
             </div>
-            <div>
-                <h5 class="data3">{{ item.text }}</h5>
-            </div>
-            <h6 class="data4">词条更新时间:{{ item.time_now }}</h6>
-            <hr>
+            {% endfor %}
         </div>
         {% endfor %}
+
     </div>
     <div class="pagination">
         <span class="step-links">

@@ -1,134 +1,243 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>   
-    <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
-    <link rel="stylesheet" href="/CSS/common.css">
-    <link rel="stylesheet" href="/CSS/index.css">
-    <title>主页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>巴基斯坦国情小站</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <link rel="stylesheet" href="../static/css/index.css">
 </head>
 <body>
-    <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid">
-            <a class="navbar-brand" href="http://127.0.0.1:8000/catalogue/">主页</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation" data-toggle="dropdown">
-            <span class="navbar-toggler-icon" data-toggle="dropdown"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000/culture/">文化</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="http://127.0.0.1:8000/history/">历史</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="http://127.0.0.1:8000/diplomacy/">外交</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="https://www.thenews.com.pk/">官方网站</a>
-              </li>
-              <div class="pulldown-box">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="">
-                  全部
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#">电视</a></li>
-                  <li><a class="dropdown-item" href="#">动漫</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+    <!-- 顶部导航栏 -->
+    <header class="text-gray-700 py-4">  
+        <div class="container mx-auto flex justify-between items-center px-6">
+            <div class="text-3xl font-bold">巴基斯坦の小站</div>
+            <nav>
+                <ul class="flex space-x-8">
+               <     <li class="hover:text-black-500 hover:underline"><a href="http://127.0.0.1:8000/index/">首页</a></li>
+                    <li class="hover:bg-gray-200"><a href="http://127.0.0.1:8000/culture/">文化</a></li>
+                    <li class="hover:bg-gray-200"><a href="http://127.0.0.1:8000/history/">历史</a></li>
+                    <li class="hover:bg-gray-200"><a href="http://127.0.0.1:8000/diplomacy/">外交</a></li>
+                    <li class="hover:bg-gray-200">关于我们</li>
                 </ul>
-              </li>
-            </div>
-            </ul>
-            <form class="d-flex">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-            </div>
-            </div>
             </nav>
-        <div class="navigation_bar">
-            <p>Hit</p>
-            <p>Broadcast</p>
+            <button class="bg-gray-200 text-black py-2 px-4 rounded">登录</button>
         </div>
-        <div class="main">
-            <a  href="https://wujicloud.cn/voddetail/42265.html">
-                <img src="/images/p1.png" alt="">
-                    <p>我们的歌</p>
-                </img>
-            </a>
-            <a href="https://wujicloud.cn/voddetail/43534.html">
-                <img src="/images/p2.png" alt="">
-                    <p>名侦探学院</p>
-                </img>
-            </a>
-            <a href="https://wujicloud.cn/voddetail/42999.html">
-                <img src="/images/p3.png" alt="">
-                    <p>我在你的未来吗</p>
-                </img>
-            </a>
-            <a href="https://wujicloud.cn/voddetail/42950.html">
-                <img src="/images/p4.png" alt="">
-                    <p>大湾仔的夜第二季</p>
-                </img>
-            </a>
-            <a href="https://wujicloud.cn/voddetail/42847.html">
-                <img src="/images/p5.png" alt="">
-                    <p>再见爱人第二季</p>
-                </img>
-            </a>
-        </div>
-        <div class="navigation_bar1">
-            <p>Movie</p>
-            <p>Channel</p>
-            <div class="category">
-                <a href="https://wujicloud.cn/vodshow/6-----------.html">
-                    <p>动作片</p>
-                </a>
-                <a href="https://wujicloud.cn/vodshow/7-----------.html">
-                    <p>喜剧片</p>
-                </a>
-                <a href="https://wujicloud.cn/vodshow/8-----------.html">
-                    <p>爱情片</p>
-                </a>
-                <a href="https://wujicloud.cn/vodshow/9-----------.html">
-                    <p>科幻片</p>
-                </a>
-                <a href="https://wujicloud.cn/vodshow/10-----------.html">
-                    <p>恐怖片</p>
-                </a>
+    </header>
+
+    <section class="my-4 mx-6">
+        <div class="bg-white p-4 rounded">
+             <!-- 图片轮播 -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="flex justify-center">
+                       <a href="http://127.0.0.1:8000/history/"> <img src="../static/img/1.jpeg" alt="A breathtaking view of a canyon with a smooth, curved sandstone formation, showcasing warm hues of red and orange under subtle lighting" class="w-2/3 h-auto rounded"></a>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="flex justify-center">
+                        <img src="../static/img/2.jpeg" alt="A breathtaking view of a canyon with a smooth, curved sandstone formation, showcasing warm hues of red and orange under subtle lighting" class="w-2/3 h-auto rounded">
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="flex justify-center">
+                        <img src="../static/img/3.jpeg" alt="A breathtaking view of a canyon with a smooth, curved sandstone formation, showcasing warm hues of red and orange under subtle lighting" class="w-2/3 h-auto rounded">
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-5 gap-4 pb-4"></div>
+            <div class="grid grid-cols-5 gap-4 pb-4"></div>
+             <!-- 文章列表1 -->
+            <div id="div1" class=" bg-white shadow-lg overflow-hidden ml-auto mr-auto " style="width: 70%">
+                <div class="p-6">
+                    <div class="flex items-start">
+                      <div class="flex-shrink-0">
+                        <img src="https://placehold.co/150x150" alt="Laptop with black and white design" class="w-24 h-24 object-cover rounded-lg shadow-md">
+                      </div>
+                      <div class="ml-4">
+                        <a href="file:///C:/Users/34544/Desktop/blog/page.html" class="text-xl font-semibold hover:text-black-500 hover:underline">《原神》4.3版本「蔷薇与铳枪」前瞻特别节目回顾</a>
+                        <p class="mt-2 text-gray-600 text-sm">《原神》4.3版本「蔷薇与铳枪」将于2023年12月20日上线。感谢各位旅行者的支持与陪伴，我们将为大家带来更多4.3版本的最新消息~</p>
+                        <div class="mt-4 flex items-center">
+                          <div class="flex text-gray-600 text-sm">
+                            <span>王者荣耀 ·</span>
+                            <span class="ml-1">2020-08-26</span>
+                          </div>
+                          <div class="flex ml-auto text-red-600">
+                            <i class="fas fa-chevron-up"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <img src="https://placehold.co/150x150" alt="Laptop with black and white design" class="w-24 h-24 object-cover rounded-lg shadow-md">
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-xl font-semibold hover:text-black-500 hover:underline">《原神》「流光拾遗之旅」——尘世篇·蛋雕</h2>
+                            <p class="mt-2 text-gray-600 text-sm">光与影交错，虚与实相间，蛋壳上的图景栩栩如生，仿佛这片烟火人间近在眼前。</p>
+                            <div class="mt-4 flex items-center">
+                                <div class="flex text-gray-600 text-sm">
+                                    <span>金铲铲 ·</span>
+                                    <span class="ml-1">2020-08-26</span>
+                                </div>
+                                <div class="flex ml-auto text-red-600">
+                                    <i class="fas fa-chevron-up"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>               
+                <div class="p-6">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <img src="wxb.jpg" alt="Laptop with black and white design" class="w-24 h-24 object-cover rounded-lg shadow-md">
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-xl font-semibold hover:text-black-500 hover:underline">《原神》角色演示-「王续斌：啦啦啦啦啦」</h2>
+                            <p class="mt-2 text-gray-600 text-sm">《原神》bilibili服下载地址： https://www.biligame.com/detail/?id=103496。</p>
+                            <div class="mt-4 flex items-center">
+                                <div class="flex text-gray-600 text-sm">
+                                    <span>金铲铲 ·</span>
+                                    <span class="ml-1">2020-08-26</span>
+                                </div>
+                                <div class="flex ml-auto text-red-600">
+                                    <i class="fas fa-chevron-up"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>   
+                <div class="p-6">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <img src="wxb.jpg" alt="Laptop with black and white design" class="w-24 h-24 object-cover rounded-lg shadow-md">
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-xl font-semibold hover:text-black-500 hover:underline">《原神》角色演示-「王续斌：啦啦啦啦啦」</h2>
+                            <p class="mt-2 text-gray-600 text-sm">《原神》bilibili服下载地址： https://www.biligame.com/detail/?id=103496。</p>
+                            <div class="mt-4 flex items-center">
+                                <div class="flex text-gray-600 text-sm">
+                                    <span>金铲铲 ·</span>
+                                    <span class="ml-1">2020-08-26</span>
+                                </div>
+                                <div class="flex ml-auto text-red-600">
+                                    <i class="fas fa-chevron-up"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                           
+            </div>
+            <!-- 文章列表2 -->
+            <div id="div2" class="hidden bg-white shadow-lg overflow-hidden ml-auto mr-auto " style="width: 70%">
+                <div class="p-6">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <img src="https://placehold.co/150x150" alt="Laptop with black and white design" class="w-24 h-24 object-cover rounded-lg shadow-md">
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-xl font-semibold hover:text-black-500 hover:underline">《王者荣耀》4.3版本「蔷薇与铳枪」前瞻特别节目回顾</h2>
+                            <p class="mt-2 text-gray-600 text-sm">《原神》4.3版本「蔷薇与铳枪」将于2023年12月20日上线。
+                                感谢各位旅行者的支持与陪伴，我们将为大家带来更多4.3版本的最新消息~</p>
+                            <div class="mt-4 flex items-center">
+                                <div class="flex text-gray-600 text-sm">
+                                    <span>王者荣耀 ·</span>
+                                    <span class="ml-1">2020-08-26</span>
+                                </div>
+                                <div class="flex ml-auto text-red-600">
+                                    <i class="fas fa-chevron-up"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <img src="https://placehold.co/150x150" alt="Laptop with black and white design" class="w-24 h-24 object-cover rounded-lg shadow-md">
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-xl font-semibold hover:text-black-500 hover:underline">《王者荣耀》「流光拾遗之旅」——尘世篇·蛋雕</h2>
+                            <p class="mt-2 text-gray-600 text-sm">光与影交错，虚与实相间，蛋壳上的图景栩栩如生，仿佛这片烟火人间近在眼前。</p>
+                            <div class="mt-4 flex items-center">
+                                <div class="flex text-gray-600 text-sm">
+                                    <span>金铲铲 ·</span>
+                                    <span class="ml-1">2020-08-26</span>
+                                </div>
+                                <div class="flex ml-auto text-red-600">
+                                    <i class="fas fa-chevron-up"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>               
+                <div class="p-6">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <img src="https://placehold.co/150x150" alt="Laptop with black and white design" class="w-24 h-24 object-cover rounded-lg shadow-md">
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-xl font-semibold hover:text-black-500 hover:underline">《原神》角色演示-「王续斌：哈哈哈哈哈」</h2>
+                            <p class="mt-2 text-gray-600 text-sm">《原神》bilibili服下载地址： https://www.biligame.com/detail/?id=103496。</p>
+                            <div class="mt-4 flex items-center">
+                                <div class="flex text-gray-600 text-sm">
+                                    <span>金铲铲 ·</span>
+                                    <span class="ml-1">2020-08-26</span>
+                                </div>
+                                <div class="flex ml-auto text-red-600">
+                                    <i class="fas fa-chevron-up"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>         
+                <div class="p-6">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0">
+                            <img src="https://placehold.co/150x150" alt="Laptop with black and white design" class="w-24 h-24 object-cover rounded-lg shadow-md">
+                        </div>
+                        <div class="ml-4">
+                            <h2 class="text-xl font-semibold hover:text-black-500 hover:underline">《原神》角色演示-「王续斌：哈哈哈哈哈」</h2>
+                            <p class="mt-2 text-gray-600 text-sm">《原神》bilibili服下载地址： https://www.biligame.com/detail/?id=103496。</p>
+                            <div class="mt-4 flex items-center">
+                                <div class="flex text-gray-600 text-sm">
+                                    <span>金铲铲 ·</span>
+                                    <span class="ml-1">2020-08-26</span>
+                                </div>
+                                <div class="flex ml-auto text-red-600">
+                                    <i class="fas fa-chevron-up"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>                     
+            </div>
+            <!-- 换页按钮 -->
+            <div class="py-4">
+                <div class="flex justify-center">
+                  <div class="flex rounded-md">
+                    <a href="#" onclick="showDiv(1)" class="px-4 py-2 text-gray-700 bg-white border rounded-r-md">
+                        <i class="fas fa-chevron-left"></i>
+                      </a>
+                    <a href="#" onclick="showDiv(2)" class="px-4 py-2 text-gray-700 bg-white border rounded-r-md">
+                      <i class="fas fa-chevron-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
         </div>
-        <div class="main1">
-            <a href="https://wujicloud.cn/voddetail/43694.html">
-                <img src="/images/p6.png" alt="">
-                    <p>世纪虫</p>
-                </img>
-            </a><a href="https://wujicloud.cn/voddetail/43693.html">
-                <img src="/images/p7.png" alt="">
-                    <p>我的遗憾和你有关</p>
-                </img>
-            </a><a href="https://wujicloud.cn/voddetail/43690.html">
-                <img src="/images/p8.png" alt="">
-                    <p>分贝</p>
-                </img>
-            </a><a href="https://wujicloud.cn/voddetail/28589.html">
-                <img src="/images/p9.png" alt="">
-                    <p>坏家伙们2019</p>
-                </img>
-            </a><a href="https://wujicloud.cn/voddetail/28588.html">
-                <img src="/images/p10.png" alt="">
-                    <p>白头山</p>
-                </img>
-            </a>
+                  
+            <!-- Footer -->
+        <div class="bg-white text-black py-4 text-center text-xs">
+                © 2022-2023 Developed by onexu - 京ICP备1006611 
         </div>
-    </div>
+    </section>
+    
+    <script src="../static/js/index.js">
+    </script>
 </body>
 </html>

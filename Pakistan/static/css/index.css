@@ -1,4 +1,4 @@
-.container{
+/* .container{
     max-width: 100%;
     min-height: 500px;
 
@@ -31,7 +31,7 @@ a.navbar-brand{
     text-decoration: none;
 }
 .main a:hover{
-    box-shadow: 0 16px 32px 0 rgba(67, 23, 154, 0.15);/* 鼠标悬浮时盒子出现的阴影 */
+     box-shadow: 0 16px 32px 0 rgba(67, 23, 154, 0.15);
 	transform: translate(0, 5px);
 }
 .main img{
@@ -82,7 +82,7 @@ a.navbar-brand{
     text-decoration: none;
 }
 .main1 a:hover{
-    box-shadow: 0 16px 32px 0 rgba(67, 23, 154, 0.15);/* 鼠标悬浮时盒子出现的阴影 */
+    box-shadow: 0 16px 32px 0 rgba(67, 23, 154, 0.15);
 	transform: translate(0, 5px);
 }
 .main1 img{
@@ -121,4 +121,41 @@ a.navbar-brand{
         text-align: center;
     }
 } 
-
+*/
+body {
+    font-family: 'Noto Sans SC', sans-serif;
+    background-color: #f7f7f7;
+}
+header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+.carousel-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    z-index: -1;
+    width:100%;
+}
+.carousel-item:first-child {
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+}
+.carousel-item.active {
+    opacity: 1;
+    z-index: 2;
+}
+.hover:bg-gray-200:hover {
+background-color: #CBD5E0; /* 你想要的背景颜色 */
+}
+.hidden {
+display: none;
+}

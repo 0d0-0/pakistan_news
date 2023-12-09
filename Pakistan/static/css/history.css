@@ -1,93 +1,160 @@
-.bar{
-    margin-top: 20px;
-    height: 100px;
+/* .container{
+    max-width: 100%;
+    min-height: 500px;
+
 }
-.bar p{
-    color: gray;
+a.navbar-brand{
+    background-color: green;
 }
-.barlist{
+.navigation_bar {
+    height: 40px;
+    
+}
+.navigation_bar p {
+    padding: 5px;
+    display: inline-block;
+    margin-left: 30px;
+    font-size: 40px;
+}
+.navigation_bar p:first-letter{
+    color:#9ACD32 ;
+}
+.main{
+    padding-top: 10px;
+    margin: 30px;
+    height: 260px;
+    transition: all 3s;
+    display: flex;
     justify-content: space-around;
-    max-width: 100%;
-    max-height: 600px;
 }
-.listbox{
-    background-color: #F5F5F5;
-    height: 200px;
-    width: 1250px;
-    transition: all 3s;
-    display: flex;
-    max-width: 100%;
+.main a{
+    text-decoration: none;
 }
-.listbox img{
-    margin: 20px;
-    height: 150px;
-}
-.listbox a:hover{
-    box-shadow: 0 16px 32px 0 rgba(23, 154, 34, 0.15);/* 鼠标悬浮时盒子出现的阴影 */
+.main a:hover{
+     box-shadow: 0 16px 32px 0 rgba(67, 23, 154, 0.15);
 	transform: translate(0, 5px);
 }
-.data1{
-    width: 70px;
-    height: 30px;
-    position: absolute;
-    top: 40%;   
-    left: 11%;             
-    transform: translateY(-20%); 
+.main img{
+    width:200px;
+    height: 260px;
 }
-.data2{
-    width: 100px;
-    height: 30px;
-    position: absolute;
-    top: 40%;   
-    left: 16%;             
-    transform: translateY(-20%); 
-    color: gray;
+.main p{
+    font-size: 20px;
+    color: #9ACD32;
 }
-.data3{
-    width: 60px;
-    height: 30px;
-    position: absolute;
-    top: 40%;   
-    left: 30%;             
-    transform: translateY(-20%); 
+
+.navigation_bar1 {
+    height: 50px;
+    display: flex;
+    
 }
-.data4{
-    width: 132px;
-    height: 30px;
-    position: absolute;
-    top: 40%;   
-    left: 85%;             
-    transform: translateY(-20%); 
-    text-align: right;
+.navigation_bar1 p {
+    padding: 8px;
+    display: inline-block;
+    margin-left: 30px;
+    font-size: 40px;
 }
-.ju{
-    width: 220px;
-    height: 30px;
-    position: absolute;
-    top: 40%;   
-    left: 40%;             
-    transform: translateY(-20%); 
+.navigation_bar1 p:first-letter{
+    color:#9ACD32 ;
 }
-.xian{
-    width: 330px;
-    height: 30px;
-    position: absolute;
-    top: 40%;   
-    left: 58%;             
-    transform: translateY(-20%); 
+.category{
+    padding: 15px;
 }
-.listbox1{
-    background-color: white;
-    height: 200px;
-    width: 1250px;
+.category a{
+    text-decoration: none;
+}
+.category p{
+    font-size: 20px;
+    color: #9ACD32;
+    border: 2px #151515 solid;
+    border-radius: 15px;
+
+}
+.main1{
+    padding-top: 10px;
+    margin: 30px;
+    height: 260px;
     transition: all 3s;
     display: flex;
+    justify-content: space-around;
 }
-.listbox1 img{
-    margin: 20px;
-    height: 150px;
+.main1 a{
+    text-decoration: none;
 }
-.listbox1 a:hover{
-    box-shadow: 0 16px 32px 0 rgba(23, 154, 34, 0.15);/* 鼠标悬浮时盒子出现的阴影 */
+.main1 a:hover{
+    box-shadow: 0 16px 32px 0 rgba(67, 23, 154, 0.15);
 	transform: translate(0, 5px);
+}
+.main1 img{
+    width:200px;
+    height: 260px;
+}
+.main1 p{
+    font-size: 20px;
+    color: #9ACD32;
+}
+@media (max-width: 480px){
+    .displayNone{
+        display: none} 
+    .navigation_bar p{
+        font-size: 30px;
+    }
+    .navigation_bar1 p{
+        font-size: 30px;
+    }
+    .category{
+        display: none;
+    }
+    .main{
+        display: inline-block;
+        width: 100%;
+        justify-content: space-around;
+        text-align: center;
+    }
+    .navigation_bar{
+        height: 20px;
+    }
+    .main1{
+        display: inline-block;
+        width:100% ;
+        justify-content: space-around;
+        text-align: center;
+    }
+} 
+*/
+body {
+    font-family: 'Noto Sans SC', sans-serif;
+    background-color: #f7f7f7;
+}
+header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+.carousel-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    z-index: -1;
+}
+.carousel-item:first-child {
+    position: relative;
+    z-index: 1;
+    opacity: 1;
+}
+.carousel-item.active {
+    opacity: 1;
+    z-index: 2;
+}
+.hover:bg-gray-200:hover {
+background-color: #CBD5E0; /* 你想要的背景颜色 */
+}
+.hidden {
+display: none;
 }
