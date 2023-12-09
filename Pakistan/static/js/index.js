@@ -10,7 +10,7 @@ setInterval(() => {
         item.classList.remove("active");
     });
     carouselItems[currentItem].classList.add("active");
-}, 5000);
+}, 3000);
 function showDiv(divNumber) {
     var div1 = document.getElementById('div1');
     var div2 = document.getElementById('div2');
