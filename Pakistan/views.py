@@ -1,8 +1,6 @@
 from django.shortcuts import render,HttpResponse,redirect
 from Pakistan.models import History,Diplomacy,Culture
-import re,requests,time
-from datetime import datetime 
-from bs4 import BeautifulSoup
+from datetime import datetime
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
