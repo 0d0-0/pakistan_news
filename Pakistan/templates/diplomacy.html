@@ -36,13 +36,29 @@
         <h3>目录<h6>(点击下方目录即可跳转到相应内容)</h6>
         </h3>
     </div>
-    <ol>
+    <ul>
 
-        {% for item in data_list %}
-        <li><a href="#{{item.id}}">{{item.times}}</a></li>
+        {% for country in countries %}
+
+        <li>
+            <a href="#{{country}}">{{country}}</a>
+            <ul>
+
+                {% for record in test_records %}
+
+                {% if record.country == country %}
+                <li>
+                    <a href="#{{record.title}}">{{record.title}}</a>
+                </li>
+                {% endif %}
+
+                {% endfor %}
+
+            </ul>
+        </li>
         {% endfor %}
 
-    </ol>
+    </ul>
     <div class="barlist">
         {% for country in countries %}
         <div class="listbox1" id="{{ country }}">
@@ -51,7 +67,7 @@
             {% for record in test_records %}
             {% if record.country == country %}
             <div>
-                <h2 class="data2" id="{{ record.title }}">
+                <h2 class="data2" id="{{ record.title}}">
                     {{ record.title }}
                 </h2>
                 <div>
