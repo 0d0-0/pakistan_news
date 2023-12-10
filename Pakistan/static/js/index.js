@@ -32,3 +32,19 @@ function showDiv(divNumber) {
         div3.style.display = 'block';
     }
 }
+function toggleDiv() {
+  var myDiv = document.getElementById("myDiv");
+  if (myDiv.style.display === "none") {
+    myDiv.style.display = "block";
+  } else {
+    myDiv.style.display = "none";
+  }
+}
+function hideDiv2() {
+    var myDiv2 = document.getElementById("myDiv2");
+    myDiv2.style.display = "none";
+}
+function showDiv2() {
+    var myDiv2 = document.getElementById("myDiv2");
+    myDiv2.style.display = "block";
+}

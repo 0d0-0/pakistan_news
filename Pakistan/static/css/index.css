@@ -36,3 +36,27 @@ background-color: #CBD5E0; /* 你想要的背景颜色 */
 .hidden {
 display: none;
 }
+.w-90 {
+    width: 97%;
+}
+body {
+    font-family: 'Inter', sans-serif;
+}
+.font-bold {
+    font-weight: bold;
+  }
+  
+  .text-lg {
+    font-size: 1.125rem;
+  }
+  .image-container {
+    display: flex;
+    gap: 2px;
+  }
+  
+  .image-container img {
+    flex: 1;
+    object-fit: cover;
+    width: 100%;
+    height: auto;
+  }
