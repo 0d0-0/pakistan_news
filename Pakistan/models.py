@@ -38,4 +38,11 @@ class History(models.Model):
         verbose_name= 'history of Pakistan'
         verbose_name_plural=verbose_name
 
-#class Diplomacy(models.Model):
+class Diplomacy(models.Model):
+    '''巴基斯坦的外交'''
+    country=models.TextField(verbose_name='国家',blank=True,null=True)
+    title=models.TextField(verbose_name='标题',blank=True,null=True)
+    text=models.TextField(verbose_name='外交内容',blank=True,null=True)
+    class Meta:
+        verbose_name= 'diplomacy of Pakistan'
+        verbose_name_plural=verbose_name

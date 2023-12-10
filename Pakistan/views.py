@@ -3,7 +3,6 @@ from Pakistan.models import History ,Test
 import re,requests,time
 from datetime import datetime 
 from bs4 import BeautifulSoup
-from . import to_get_content
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
@@ -142,13 +141,7 @@ def test(request):
         except EmptyPage:
             # 如果page超出范围  显示最后一页
             items = paginator.page(paginator.num_pages)
-        introduction=[]
         countries=[]
         countries.append('巴基斯坦-美国')
-        introduction.append('''巴基斯坦－美国关系指的是巴基斯坦与美国之间的外交关系。两国于1947年建交，冷战期间，巴美关系密切。此后，巴基斯坦因核试验和政变招致美国制裁。九一一袭击事件后，美国政府经常指责巴基斯坦一方面参加国际反恐战争，另一方面却暗中包庇多个恐怖组织。[1]尽管如此，巴基斯坦自2002年以来一直是美国主要的非北约盟友。
-
-近年来，随着中美关系的急剧恶化，和美印战略伙伴关系的强化，巴美两国逐渐疏远。''')
         countries.append('巴基斯坦-中国')
-        introduction.append('''中国－巴基斯坦关系（乌尔都语：پاک چین تعلقات）是指中国和巴基斯坦之间的外交关系，两国于1951年5月21日建交。当时刚从英国独立不久的巴基斯坦，正式和迁台不久的中华民国政府断绝外交关系，改而和中华人民共和国建交，是世界上最早承认中华人民共和国的国家之一，也是首个和中华人民共和国建立外交关系的伊斯兰国家。
-1962年，中印战争爆发后，作为印度的传统宿敌的巴基斯坦，和中国的关系变得更亲密。冷战时期，中华人民共和国和巴基斯坦是亚洲区平衡苏联和其盟友印度的主要力量。1979年，苏联入侵阿富汗企图将势力南下印度，中华人民共和国政府同美国一起，强力支持巴基斯坦联合抵抗苏联的侵略，利用边境对阿富汗大量援助。冷战后苏联解体，地区性的紧张得到舒缓，虽然使中印关系回暖，但中国同巴基斯坦的关系也依旧坚定，透过中方的调停使和平得到确保的条件下，目前在中巴交界处与印度还有领土争端，为保持印巴地区稳定，中华人民共和国直到今日也是巴基斯坦在军事、经济和科技方面的主要支持者，并且将其坚固的关系称作“巴铁”。''')
         return render(request,'test.html',{'data_list': items, 'introduction': introduction, 'countries': countries,'test_records':test_records})

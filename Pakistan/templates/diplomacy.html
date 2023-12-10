@@ -10,56 +10,27 @@
     <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
     <meta name="viewport"
         content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
-    <link rel="stylesheet" href="/CSS/history.css">
-    <link rel="stylesheet" href="/CSS/common.css">
+    <link rel="stylesheet" href="/CSS/diplomacy.css">
     <title>巴基斯坦外交大事纪</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="http://127.0.0.1:8000/catalogue">主页</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true"
-                aria-label="Toggle navigation" data-toggle="dropdown">
-                <span class="navbar-toggler-icon" data-toggle="dropdown"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="http://127.0.0.1:8000/culture/">文化</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="http://127.0.0.1:8000/history/">历史</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="http://127.0.0.1:8000/diplomacy/">外交</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://www.thenews.com.pk/">官方网站</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-toggle="dropdown" aria-expanded="true">
-                            全部
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">电视</a></li>
-                            <li><a class="dropdown-item" href="#">动漫</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
+    <!-- 顶部导航栏 -->
+    <header class="text-gray-700 py-4">
+        <div class="container mx-auto flex justify-between items-center px-6">
+            <div class="text-3xl font-bold">巴基斯坦の小站</div>
+            <nav>
+                <ul class="flex space-x-8">
+                    <li class="hover:text-black-500 hover:underline"><a href="http://127.0.0.1:8000/index/">首页</a></li>
+                    <li class="hover:bg-gray-200"><a href="http://127.0.0.1:8000/culture/">文化</a></li>
+                    <li class="hover:bg-gray-200"><a href="http://127.0.0.1:8000/history/">历史</a></li>
+                    <li class="hover:bg-gray-200"><a href="http://127.0.0.1:8000/diplomacy/">外交</a></li>
+                    <li class="hover:bg-gray-200">关于我们</li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
-            </div>
+            </nav>
+            <button class="bg-gray-200 text-black py-2 px-4 rounded">登录</button>
         </div>
-    </nav>
+    </header>
     <div class="bar">
         <h1>The Diplomacy of Pakistan</h1>
     </div>
@@ -75,41 +46,24 @@
 
     </ol>
     <div class="barlist">
-
-        {% for item in data_list %}
-        <div class="listbox1" id="{{item.id}}">
-            <h2 class="data1">{{ item.times }}</h2>
+        {% for country in countries %}
+        <div class="listbox1" id="{{ country }}">
+            <h1 class="data1">{{ country }}</h1>
             <hr>
+            {% for record in test_records %}
+            {% if record.country == country %}
             <div>
-                <p class="data2"><p>
+                <h2 class="data2" id="{{ record.title }}">
+                    {{ record.title }}
+                </h2>
+                <div>
+                    <h5 class="data3">{{ record.text }}</h5>
+                </div>
             </div>
-            <div>
-                <h5 class="data3">{{ item.text }}</h5>
-            </div>
-            <h6 class="data4">词条更新时间:{{ item.time_now }}</h6>
-            <hr>
+            {% endif %}
+            {% endfor %}
         </div>
         {% endfor %}
-    </div>
-    <div class="pagination">
-        <span class="step-links">
-            <div>
-                <span class="current">
-                    Page {{ data_list.number }} of {{ data_list.paginator.num_pages }}.
-                </span>
-            </div>
-            {% if data_list.has_previous %}
-            <a href="?page={{ data_list.previous_page_number }}">&laquo; 上一页</a>
-            {% else %}
-            <span class="disabled">&laquo; 上一页</span>
-            {% endif %}
-
-            {% if data_list.has_next %}
-            <a href="?page={{ data_list.next_page_number }}">下一页 &raquo;</a>
-            {% else %}
-            <span class="disabled">下一页 &raquo;</span>
-            {% endif %}
-        </span>
     </div>
 </body>
 
