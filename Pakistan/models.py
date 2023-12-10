@@ -18,16 +18,6 @@ class Entry(models.Model):
         verbose_name_plural = 'entries'
 def __str__(self):
     """返回一个表示条目的简单字符串"""
-# class Test(models.Model):
-#     '''巴基斯坦的外交'''
-#     country=models.TextField(verbose_name='国家',blank=True,null=True)
-#     title=models.TextField(verbose_name='标题',blank=True,null=True)
-#     text=models.TextField(verbose_name='外交内容',blank=True,null=True)
-#     time_now=models.DateTimeField(verbose_name='更新时间',default=datetime.now())
-#     class Meta:
-#         verbose_name= 'test of Pakistan'
-#         verbose_name_plural=verbose_name
-#Create your models here.
 class History(models.Model):
     """巴基斯坦的历史"""
     times=models.TextField(verbose_name='历史时期' ,max_length=100)
@@ -41,8 +31,17 @@ class History(models.Model):
 class Diplomacy(models.Model):
     '''巴基斯坦的外交'''
     country=models.TextField(verbose_name='国家',blank=True,null=True)
-    title=models.TextField(verbose_name='标题',blank=True,null=True)
+    title=models.TextField(verbose_name='标题',blank=True,null=True,unique=True)
     text=models.TextField(verbose_name='外交内容',blank=True,null=True)
     class Meta:
         verbose_name= 'diplomacy of Pakistan'
         verbose_name_plural=verbose_name
+
+class Culture(models.Model):
+    '''巴基斯坦的外交'''
+    aspect=models.TextField(verbose_name='文化层面',blank=True,null=True,unique=True)
+    text=models.TextField(verbose_name='文化内容',blank=True,null=True)
+    class Meta:
+        verbose_name= 'culture of Pakistan'
+        verbose_name_plural=verbose_name
+

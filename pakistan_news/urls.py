@@ -25,6 +25,5 @@ urlpatterns = [
     path('history/', views.history),
     path('culture/', views.culture),
     path('diplomacy/', views.diplomacy),
-    path('test/', views.test),
 ]
                                                                                                                         

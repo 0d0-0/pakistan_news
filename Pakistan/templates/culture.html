@@ -30,7 +30,7 @@
         </div>
     </header>
     <div class="bar">
-        <h1>The History of Pakistan</h1>
+        <h1>The Culture of Pakistan</h1>
     </div>
     <div>
         <h3>目录<h6>(点击下方目录即可跳转到相应内容)</h6>
@@ -39,7 +39,7 @@
     <ol>
 
         {% for item in data_list %}
-        <li><a href="#{{item.id}}">{{item.times}}</a></li>
+        <li><a href="#{{item.id}}">{{item.aspect}}</a></li>
         {% endfor %}
 
     </ol>
@@ -47,7 +47,7 @@
 
         {% for item in data_list %}
         <div class="listbox1" id="{{item.id}}">
-            <h2 class="data1">{{ item.times }}</h2>
+            <h2 class="data1">{{ item.aspect }}</h2>
             <hr>
             <div>
                 <p class="data2">
@@ -56,7 +56,6 @@
             <div>
                 <h5 class="data3">{{ item.text }}</h5>
             </div>
-            <h6 class="data4">词条更新时间:{{ item.time_now }}</h6>
             <hr>
         </div>
         {% endfor %}
