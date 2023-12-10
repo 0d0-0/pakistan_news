@@ -36,8 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'Pakistan.apps.PakistanConfig',
-    'werkzeug_debugger_runserver',
-    'django_extensions',
+    "sslserver",
 ]
 
 MIDDLEWARE = [
