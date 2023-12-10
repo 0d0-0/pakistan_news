@@ -1,5 +1,5 @@
 from django.shortcuts import render,HttpResponse,redirect
-from Pakistan.models import History ,Test
+from Pakistan.models import History,Diplomacy
 import re,requests,time
 from datetime import datetime 
 from bs4 import BeautifulSoup
@@ -82,20 +82,10 @@ H.G. Rowlinson评论道:
 
 def diplomacy(request):
     if request.method == "GET":
-        return render(request,'diplomacy.html')
-
-
-def culture(request):
-    if request.method == "GET":
-        soup=to_get_content.to_get_content(request,r'https://storyofpakistan.com/events/the-mughal-empire/')
-        return render(request,'culture.html')
-
-def test(request):
-    if request.method == "GET":
         #把数据先放进test_records中
         test_records=[
-            Test(country='巴基斯坦-美国',title='''冷战期间''',text='''1958年巴基斯坦军事政变后，阿尤布·汗改变了原来的不结盟立场，改为亲西方，先后加入了中央条约组织和东南亚条约组织。并在中美关系正常化时发挥了中介作用。随着苏联入侵阿富汗，其在资助阿富汗圣战者中也起到关键作用。然而随着苏联解体和冷战结束，巴基斯坦的地缘政治作用下降，美巴关系随之冷却。'''),
-            Test(country='巴基斯坦-美国',title='''冷战结束后的关系''',text='''911事件发生后，穆沙拉夫领导的巴基斯坦军方随即加入了美国领导的反恐战争，为北约提供到阿富汗的补给路线。总计布什政府曾向巴基斯坦提供共124亿美元援助。奥巴马政府的援助则超过210亿美元。
+            Diplomacy(country='巴基斯坦-美国',title='''冷战期间''',text='''1958年巴基斯坦军事政变后，阿尤布·汗改变了原来的不结盟立场，改为亲西方，先后加入了中央条约组织和东南亚条约组织。并在中美关系正常化时发挥了中介作用。随着苏联入侵阿富汗，其在资助阿富汗圣战者中也起到关键作用。然而随着苏联解体和冷战结束，巴基斯坦的地缘政治作用下降，美巴关系随之冷却。'''),
+            Diplomacy(country='巴基斯坦-美国',title='''冷战结束后的关系''',text='''911事件发生后，穆沙拉夫领导的巴基斯坦军方随即加入了美国领导的反恐战争，为北约提供到阿富汗的补给路线。总计布什政府曾向巴基斯坦提供共124亿美元援助。奥巴马政府的援助则超过210亿美元。
 
 2009年10月，美推出5年内向巴基斯坦提供75亿美元援助的“克里-卢格法案”。两国建立战略对话机制。
 
@@ -104,16 +94,16 @@ def test(request):
 2018年1月1日，美国总统唐纳德·特朗普在推特上写道：“美国在过去15年愚蠢地给了巴基斯坦超过330亿美元的援助，而他们除了谎言和欺骗什么也没有给我们，把我们的领导人们当傻子。他们向我们在阿富汗搜捕的恐怖分子提供庇护所，没帮到什么忙。不会再有了！”随后美国国务院终止了对巴基斯坦的所有军事援助。
 
 随着2021年美军完全撤出阿富汗和塔利班掌权，巴基斯坦时任总理伊姆兰·汗表示“阿富汗人打破了奴隶制的枷锁”。[7]美国政府和巴基斯坦的关系更加冷淡，美国总统拜登和印度总理莫迪的联合声明中要求巴基斯坦对跨境恐怖主义负责。'''),
-            Test(country='巴基斯坦-美国',title='''21世纪''',text='''尽管2022年4月以来巴美关系有所改善，但这在很大程度上是相较于特朗普时期双边关系跌至冰点的触底反弹。相比冷战时期乃至21世纪初反恐战争时期，今日之巴美双方在政治互信、经济协调、安全合作和外交配合等诸多领域都存在尖锐矛盾'''),
-            Test(country='巴基斯坦-中国',title='''20世纪四十年代-20世纪六十年代''',text='''1947年8月14日，因印巴分治，原英属印度被分为印度联邦与巴基斯坦自治领，中华民国在当天承认巴基斯坦自治领独立并建立外交关系，直至1950年1月巴基斯坦正式承认中华人民共和国后为止。
+            Diplomacy(country='巴基斯坦-美国',title='''21世纪''',text='''尽管2022年4月以来巴美关系有所改善，但这在很大程度上是相较于特朗普时期双边关系跌至冰点的触底反弹。相比冷战时期乃至21世纪初反恐战争时期，今日之巴美双方在政治互信、经济协调、安全合作和外交配合等诸多领域都存在尖锐矛盾'''),
+            Diplomacy(country='巴基斯坦-中国',title='''20世纪四十年代-20世纪六十年代''',text='''1947年8月14日，因印巴分治，原英属印度被分为印度联邦与巴基斯坦自治领，中华民国在当天承认巴基斯坦自治领独立并建立外交关系，直至1950年1月巴基斯坦正式承认中华人民共和国后为止。
 
 中国和巴基斯坦的关系友好，双方官方称双方关系为“全天候战略合作伙伴关系”，“ 两国的长久友好关系建基于互信、互惠互利和互不干涉内政等原则”。中国政府用“好邻居、好朋友、好兄弟、好伙伴”这一组词语形容中巴关系，并且视巴基斯坦为关系最良好的国家之一。巴方官员也多次强调中巴之间是“特殊的关系”，而巴基斯坦往往被中国人称为“巴铁”。'''),
-            Test(country='巴基斯坦-中国',title='''20世纪后半叶''',text='''巴基斯坦也是中国和西方国家的关系在冷战中后期正常化的重要桥梁。 1960年代，中国受到西方国家和前苏联集团的双重孤立，也和印度爆发战争； 巴基斯坦也因克什米尔主权问题和印度处于敌对关系，在1965年爆发第二次印巴战争。 然而巴基斯坦因为地缘关系，成为西方抵抗前苏联南下印度洋的桥头堡。美国在越战战败，导致对华外交政策改变，1970年在巴基斯坦的协助下，中美两国双方秘密接触，促成美国国家安全顾问基辛格在1971年访华，奠定中华人民共和国取得联合国席位和中美建交的基础。
+            Diplomacy(country='巴基斯坦-中国',title='''20世纪后半叶''',text='''巴基斯坦也是中国和西方国家的关系在冷战中后期正常化的重要桥梁。 1960年代，中国受到西方国家和前苏联集团的双重孤立，也和印度爆发战争； 巴基斯坦也因克什米尔主权问题和印度处于敌对关系，在1965年爆发第二次印巴战争。 然而巴基斯坦因为地缘关系，成为西方抵抗前苏联南下印度洋的桥头堡。美国在越战战败，导致对华外交政策改变，1970年在巴基斯坦的协助下，中美两国双方秘密接触，促成美国国家安全顾问基辛格在1971年访华，奠定中华人民共和国取得联合国席位和中美建交的基础。
 
 1979年，前苏联入侵巴基斯坦的北方邻国阿富汗，印度也相对偏向前苏联，巴基斯坦当局深感双重威胁，中国则强力支持巴基斯坦抵御前苏联对阿富汗的侵略。
 
 1989年，中国发生六四事件时，巴基斯坦也是少数几个支持中国政府的非社会主义国家。巴基斯坦在台湾问题、西藏问题上完全支持中华人民共和国，也反对西方国家干涉中国内政。'''),
-            Test(country='巴基斯坦-中国',title='''21世纪''',text='''2013年8月27日，中巴经济走廊秘书处在巴基斯坦首都伊斯兰堡设立。2014年2月，巴基斯坦总统侯赛因在对中国的国事访问中讨论了相关议题。两个月后，巴基斯坦总理谢里夫同中国国务院总理李克强会面讨论了项目的计划。2014年11月8日，在中国国务院总理李克强与巴基斯坦总理谢里夫的共同见证下，中国国家发展改革委副主任、国家能源局局长吴新雄与巴基斯坦水电部常秘穆罕默德·尤尼斯·达加签署了《中巴经济走廊能源项目合作的协议》。
+            Diplomacy(country='巴基斯坦-中国',title='''21世纪''',text='''2013年8月27日，中巴经济走廊秘书处在巴基斯坦首都伊斯兰堡设立。2014年2月，巴基斯坦总统侯赛因在对中国的国事访问中讨论了相关议题。两个月后，巴基斯坦总理谢里夫同中国国务院总理李克强会面讨论了项目的计划。2014年11月8日，在中国国务院总理李克强与巴基斯坦总理谢里夫的共同见证下，中国国家发展改革委副主任、国家能源局局长吴新雄与巴基斯坦水电部常秘穆罕默德·尤尼斯·达加签署了《中巴经济走廊能源项目合作的协议》。
 
 2015年，也门战事突起，安全形势持续恶化。由于巴政府派出的飞机和两艘军舰一时无法满足上千名从也门撤离回国的巴公民的要求，当地情况也十分复杂，巴政府请求中方协助其撤离部分滞留在也门的公民。中方在接到这一请求后启动应急机制，协调有关各方，并派出了正在相关海域执行任务的中国军舰“临沂号”赴亚丁湾参与撤离救援行动。
 2015年4月20日，在中国领导人习近平访问巴基斯坦期间，中巴之间签署了总共51个项目的合作协议和备忘录。
@@ -121,7 +111,40 @@ def test(request):
 2018年1月4日，巴基斯坦央行宣布自当日起中国和巴基斯坦之间的双边贸易可以通过人民币进行结算，放弃美元结算。同期，巴基斯坦军方宣布确认采购中国054A型导弹护卫舰，并组建一支配备JF-17“枭龙”多用途战机的空军中队驻防俾路支省，以维护中巴经济走廊、震慑恐怖分子。
 而巴基斯坦总理伊姆兰·汗曾在竞选期间批评中国没有给巴基斯坦带来繁荣，而是带来一场危机，并一度对中巴经济走廊持保留态度。
 2020年3月5日，中华人民共和国国家新闻办公室举办新闻发布会，称巴基斯坦将全国医院的口罩库存捐出，以支援中华人民共和国抗击新冠状病毒肺炎疫情。'''),
-            # Test(country='',title='''''',text=''''''),
+            #Diplomacy(country='',title='''''',text=''''''),
+        ]
+        for record in test_records:
+           
+            obj, created = Diplomacy.objects.get_or_create(title=record.title, defaults={'text': record.text})
+            if not created:  #如果没有添加进数据库 就添加  添加过的如果有所变化  就更新
+                obj.text = record.text  #把新的正文内容放进去
+                obj.title=record.title   #保存新的更新时间
+                obj.save()   #保存更新过的
+        data_list=Diplomacy.objects.all()  #把数据库里的数据都拿出来
+        page = request.GET.get('page', 1)
+        paginator = Paginator(data_list, 3)  # Show 10 items per page
+        try:
+            items = paginator.page(page)
+        except PageNotAnInteger:
+            # 如果page不是数字  显示第一页
+            items = paginator.page(1)
+        except EmptyPage:
+            # 如果page超出范围  显示最后一页
+            items = paginator.page(paginator.num_pages)
+        countries=[]
+        countries.append('巴基斯坦-美国')
+        countries.append('巴基斯坦-中国')
+        return render(request,'diplomacy.html',{'data_list': items,'countries': countries,'test_records':test_records})
+
+
+def culture(request):
+    if request.method == "GET":
+        return render(request,'culture.html')
+
+def test(request):
+    if request.method == "GET":
+        #把数据先放进test_records中
+        test_records=[
         ]
         for record in test_records:
            
@@ -144,4 +167,4 @@ def test(request):
         countries=[]
         countries.append('巴基斯坦-美国')
         countries.append('巴基斯坦-中国')
-        return render(request,'test.html',{'data_list': items, 'introduction': introduction, 'countries': countries,'test_records':test_records})
+        return render(request,'test.html',{'data_list': items,'countries': countries,'test_records':test_records})
