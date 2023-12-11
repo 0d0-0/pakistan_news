@@ -379,7 +379,7 @@ def login_or_register(request):
     password = request.POST.get("password")
     confirmpassword = request.POST.get("confirmpassword")
 
-    if "registers" in request.POST:
+    if "register-btn" in request.POST:
         # 注册逻辑
         if confirmpassword == password:
             # 检查用户名是否已经存在
