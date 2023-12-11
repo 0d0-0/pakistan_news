@@ -51,7 +51,7 @@
                         class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="button">
                         <a href="https://pakistannews.cn/register/">注册</a>
-                    </button> 
+                    </button>
                     <a href="https://pakistannews.cn/register/" class="text-white font-bold py-2 px-4">注册</a>
                 </div>
             </form>
@@ -104,45 +104,51 @@
     </div>
 
 
-    <!-- <script>
-        let login = document.getElementById("login");
-        let register = document.getElementById("register");
-        let form_box = document.getElementsByClassName("form-box")[0];
-        let register_box = document.getElementsByClassName("register-box")[0];
-        let login_box = document.getElementsByClassName("login-box")[0];
-        let welcomeMsg2 = document.getElementById("welcome-msg2");
-        let loginBtn = document.getElementById("login-btn");
+    <script>
+      let login = document.getElementById("login");
+      let register = document.getElementById("register");
+      let form_box = document.getElementsByClassName("form-box")[0];
+      let register_box = document.getElementsByClassName("register-box")[0];
+      let login_box = document.getElementsByClassName("login-box")[0];
+      let welcomeMsg2 = document.getElementById("welcome-msg2");
+      let welcomeMsg1 = document.getElementById("welcome-msg1");
+      let loginBtn = document.getElementById("login-btn");
+      let registerBtn = document.getElementById("register-btn");
 
-        register.addEventListener("click", () => {
-            form_box.style.transform = "translateX(80%)";
-            login_box.classList.add("hidden");
-            register_box.classList.remove("hidden");
-        });
+      register.addEventListener("click", () => {        //按下去注册后显示注册模块，register是去注册按钮的id
+        form_box.style.transform = "translateX(80%)";
+        login_box.classList.add("hidden");
+        register_box.classList.remove("hidden");
+        welcomeMsg2.textContent = "巴基斯坦小站";
+      });
 
-        loginBtn.addEventListener("click", () => {
-            // 假设的登录验证
-            let username = 323; // 获取用户名
-            let password = 2423; // 获取密码
+      loginBtn.addEventListener("click", () => {        //登入按钮
+        // 假设的登录验证
+        let username = 323; // 获取用户名
+        let password = 2423; // 获取密码
 
-            // 进行登录验证
-            if (username === "your_username" && password === "your_password") {
-                // 登录成功
-                welcomeMsg2.textContent = "登录成功！";
-                setTimeout(() => {
-                    window.location.href = "another_page.html"; // 跳转到另一个页面
-                }, 2000);
-            } else {
-                // 登录失败
-                welcomeMsg2.textContent = "账号或密码错误";
-            }
-        });
+        // 进行登录验证
+        if (username === "your_username" && password === "your_password") {
+          // 登录成功
+          welcomeMsg2.textContent = "登录成功！";
+          setTimeout(() => {
+            window.location.href = "another_page.html"; // 跳转到另一个页面
+          }, 2000);
+        } else {
+          // 登录失败
+          welcomeMsg2.textContent = "账号或密码错误";
+        }
+      });
+      registerBtn.addEventListener("click", () => {   //注册按钮
+          welcomeMsg1.textContent = "注册成功";
+      });
 
-        login.addEventListener("click", () => {
-            form_box.style.transform = "translateX(0%)";
-            register_box.classList.add("hidden");
-            login_box.classList.remove("hidden");
-        });
-    </script> -->
+      login.addEventListener("click", () => {        //去注册按钮
+        form_box.style.transform = "translateX(0%)";
+        register_box.classList.add("hidden");
+        login_box.classList.remove("hidden");
+      });
+    </script>
 </body>
 
 </html>
