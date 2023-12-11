@@ -1,5 +1,5 @@
 from django.shortcuts import render,HttpResponse,redirect
-from Pakistan.models import History,Diplomacy,Culture
+from Pakistan.models import History,Diplomacy,Culture,User
 from datetime import datetime
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
@@ -11,6 +11,14 @@ def welcome(request):
 def index(request):   #目录
     if request.method == "GET":
         return render(request,'index.html')
+
+def login(request):
+    if request.method == "GET":
+        return render(request,'login.html')
+
+def register(request):
+    if request.method == "GET":
+        return render(request,'register.html')
 
 def history(request):  #历史
     if request.method == "GET":
@@ -337,3 +345,36 @@ def test(request):
         countries.append('巴基斯坦-美国')
         countries.append('巴基斯坦-中国')
         return render(request,'test.html',{'data_list': items,'countries': countries,'test_records':test_records})
+
+def login(request):
+    if request.method == "GET":
+        return render(request, "login.html")
+
+    username = request.POST.get("username")
+    password = request.POST.get("password")
+
+    # 查询数据库中是否存在匹配的用户名和密码
+    try:
+        user = User.objects.get(username=username, password=password)
+        # 登录成功，可以进行后续处理
+        return redirect("http://pakistannews.cn/index/")
+    except User.DoesNotExist:
+        return render(request, "login.html", {"error": "用户名或密码错误，请重新输入"})
+    
+def register(request):
+    if request.method == "GET":
+        return render(request, "register.html")
+
+    username = request.POST.get("username")
+    password = request.POST.get("password")
+    confirmpassword = request.POST.get("confirmpassword")
+
+    if confirmpassword == password:
+        # 创建用户并保存到数据库
+        user = User(username=username, password=password)
+        user.save()
+        return redirect("http://pakistannews.cn/login/")
+    
+    return render(request, "register.html", {"error": "两次输入的密码不一致，请重新输入"})
+
+    

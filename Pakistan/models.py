@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime
+from django.contrib import admin
 class Topic(models.Model):
     """用户学习的主题"""
     text = models.CharField(max_length=200)
@@ -45,3 +46,12 @@ class Culture(models.Model):
         verbose_name= 'culture of Pakistan'
         verbose_name_plural=verbose_name
 
+
+class User(models.Model):
+    username = models.CharField(max_length=255)
+    password = models.CharField(max_length=255)
+
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('username', 'password') 

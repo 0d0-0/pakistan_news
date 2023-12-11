@@ -48,3 +48,7 @@ function showDiv2() {
     var myDiv2 = document.getElementById("myDiv2");
     myDiv2.style.display = "block";
 }
+function hideDiv3() {
+    var myDiv3 = document.getElementById("myDiv3");
+    myDiv3.style.display = "none";
+}
