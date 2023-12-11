@@ -24,8 +24,6 @@ class History(models.Model):
     """巴基斯坦的历史"""
     times=models.TextField(verbose_name='历史时期' ,max_length=100)
     text=models.TextField(verbose_name='历史内容',blank=True,null=True)
-    #插入数据时间  精确点
-    time_now=models.DateTimeField(verbose_name='更新时间',default=datetime.now())
     class Meta:
         verbose_name= 'history of Pakistan'
         verbose_name_plural=verbose_name

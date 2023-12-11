@@ -60,10 +60,9 @@ H.G. Rowlinson评论道:
         ]
         for record in test_records:
            
-            obj, created = History.objects.get_or_create(times=record.times, defaults={'text': record.text, 'time_now': datetime.now()})
+            obj, created = History.objects.get_or_create(times=record.times, defaults={'text': record.text})
             if not created:  #如果没有添加进数据库 就添加  添加过的如果有所变化  就更新
                 obj.text = record.text  #把新的正文内容放进去
-                obj.time_now = datetime.now()   #保存新的更新时间
                 obj.save()   #保存更新过的
         data_list=History.objects.all()  #把数据库里的数据都拿出来
         page = request.GET.get('page', 1)
@@ -310,35 +309,6 @@ def culture(request):
         
 
         return render(request,'culture.html',{'data_list': items})
-
-
-def test(request):
-    if request.method == "GET":
-        #把数据先放进test_records中
-        test_records=[
-        ]
-        for record in test_records:
-           
-            obj, created = Test.objects.get_or_create(title=record.title, defaults={'text': record.text})
-            if not created:  #如果没有添加进数据库 就添加  添加过的如果有所变化  就更新
-                obj.text = record.text  #把新的正文内容放进去
-                obj.title=record.title   #保存新的更新时间
-                obj.save()   #保存更新过的
-        data_list=Test.objects.all()  #把数据库里的数据都拿出来
-        page = request.GET.get('page', 1)
-        paginator = Paginator(data_list, 3)  # Show 10 items per page
-        try:
-            items = paginator.page(page)
-        except PageNotAnInteger:
-            # 如果page不是数字  显示第一页
-            items = paginator.page(1)
-        except EmptyPage:
-            # 如果page超出范围  显示最后一页
-            items = paginator.page(paginator.num_pages)
-        countries=[]
-        countries.append('巴基斯坦-美国')
-        countries.append('巴基斯坦-中国')
-        return render(request,'test.html',{'data_list': items,'countries': countries,'test_records':test_records})
 
 # def login(request):
 #     if request.method == "GET":
