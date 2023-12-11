@@ -21,6 +21,7 @@ from Pakistan import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('welcome/', views.welcome),
+    path('index/', views.index),
     path('', views.index),
     path('history/', views.history),
     path('culture/', views.culture),
