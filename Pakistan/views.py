@@ -12,14 +12,6 @@ def index(request):   #目录
     if request.method == "GET":
         return render(request,'index.html')
 
-def login(request):
-    if request.method == "GET":
-        return render(request,'login.html')
-
-def register(request):
-    if request.method == "GET":
-        return render(request,'register.html')
-
 def history(request):  #历史
     if request.method == "GET":
         #把数据先放进test_records中
