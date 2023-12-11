@@ -1,7 +1,9 @@
 from django.shortcuts import render,HttpResponse,redirect
+from django.urls import reverse
 from Pakistan.models import History,Diplomacy,Culture,User
 from datetime import datetime
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.models import User
 # Create your views here.
 
 def welcome(request):
@@ -338,35 +340,64 @@ def test(request):
         countries.append('巴基斯坦-中国')
         return render(request,'test.html',{'data_list': items,'countries': countries,'test_records':test_records})
 
-def login(request):
+# def login(request):
+#     if request.method == "GET":
+#         return render(request, "login.html")
+
+#     username = request.POST.get("username")
+#     password = request.POST.get("password")
+
+#     # 查询数据库中是否存在匹配的用户名和密码
+#     try:
+#         user = User.objects.get(username=username, password=password)
+#         # 登录成功，可以进行后续处理
+#         return redirect("http://pakistannews.cn/index/")
+#     except User.DoesNotExist:
+#         return render(request, "login.html", {"error": "用户名或密码错误，请重新输入"})
+    
+# def register(request):
+#     if request.method == "GET":
+#         return render(request, "register.html")
+
+#     username = request.POST.get("username")
+#     password = request.POST.get("password")
+#     confirmpassword = request.POST.get("confirmpassword")
+
+#     if confirmpassword == password:
+#         # 创建用户并保存到数据库
+#         user = User(username=username, password=password)
+#         user.save()
+#         return redirect(reverse('login'))
+    
+#     return render(request, "register.html", {"error": "两次输入的密码不一致，请重新输入"})
+
+def login_or_register(request):
     if request.method == "GET":
         return render(request, "login.html")
 
     username = request.POST.get("username")
     password = request.POST.get("password")
-
-    # 查询数据库中是否存在匹配的用户名和密码
-    try:
-        user = User.objects.get(username=username, password=password)
-        # 登录成功，可以进行后续处理
-        return redirect("http://pakistannews.cn/index/")
-    except User.DoesNotExist:
-        return render(request, "login.html", {"error": "用户名或密码错误，请重新输入"})
-    
-def register(request):
-    if request.method == "GET":
-        return render(request, "register.html")
-
-    username = request.POST.get("username")
-    password = request.POST.get("password")
     confirmpassword = request.POST.get("confirmpassword")
 
-    if confirmpassword == password:
-        # 创建用户并保存到数据库
-        user = User(username=username, password=password)
-        user.save()
-        return redirect("http://pakistannews.cn/login/")
-    
-    return render(request, "register.html", {"error": "两次输入的密码不一致，请重新输入"})
-
+    if "register" in request.POST:
+        # 注册逻辑
+        if confirmpassword == password:
+            # 检查用户名是否已经存在
+            if User.objects.filter(username=username).exists():
+                return render(request, "login.html", {"error": "该用户名已存在，请选择其他用户名"})
+            
+            # 创建用户并保存到数据库
+            user = User(username=username, password=password)
+            user.save()
+            return redirect(reverse('login'))
+        else:
+            return render(request, "login.html", {"error": "两次输入的密码不一致，请重新输入"})
+    else:
+        # 登录逻辑
+        try:
+            user = User.objects.get(username=username, password=password)
+            # 登录成功，如果需要可以执行其他任务
+            return redirect("http://pakistannews.cn/index/")
+        except User.DoesNotExist:
+            return render(request, "login.html", {"error": "用户名或密码错误，请重新输入"})
     

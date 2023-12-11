@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 from django.contrib import admin
+
 class Topic(models.Model):
     """用户学习的主题"""
     text = models.CharField(max_length=200)

@@ -26,7 +26,8 @@ urlpatterns = [
     path('history/', views.history),
     path('culture/', views.culture),
     path('diplomacy/', views.diplomacy),
-    path('login/', views.login),
-    path('register/', views.register),
+    # path('login/', views.login),
+    # path('register/', views.register),
+    path('login/', views.login_or_register),
 ]
                                                                                                                         
