@@ -64,46 +64,41 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>巴基斯坦国情小站</title>
     <link rel="stylesheet" href="../static/css/login.css" />
-</head>
-
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="form-box">
-            <div class="register-box hidden">
-                <h1>register</h1>
-                <input type="text" name="username" placeholder="用户名" />
-                <input type="password" name="password" placeholder="密码" />
-                <input type="password" name="confirmpassword" placeholder="确认密码" />
-                <button type="submit">注册</button>
-            </div>
-            <div class="login-box">
-                <h1>login</h1>
-                <input type="text" name="username" placeholder="用户名" />
-                <input type="password" name="password" placeholder="密码" />
-                <button id="login-btn" type="submit">登录</button>
-            </div>
+      <div class="form-box">
+        <div class="register-box hidden">
+          <h1>register</h1>
+          <input type="text" placeholder="用户名" />
+          <input type="text" placeholder="密码" />
+          <input type="text" placeholder="确认密码" />
+          <button id="register-btn">注册</button>
         </div>
-        <div class="con-box left">
-            <h2>欢迎来到</h2>
-            <h2><span id="welcome-msg1">巴基斯坦小站</span></h2>
-            <p>已有账号</p>
-            <button id="login">去登录</button>
+        <div class="login-box">
+          <h1>login</h1>
+          <input type="text" placeholder="用户名" />
+          <input type="text" placeholder="密码" />
+          <button id="login-btn">登录</button>
         </div>
-        <div class="con-box right">
-            <h2 id="welcome-msg2">欢迎来到<br><span>巴基斯坦小站</span></h2>
-            <p>没有账号？</p>
-            <button id="register">去注册</button>
-        </div>
+      </div>
+      <div class="con-box left">
+        <h2 id="welcome-msg1">欢迎来到<br><span>巴基斯坦小站</span></h2>
+        <p>已有账号</p>
+        <button id="login">去登录</button>
+      </div>
+      <div class="con-box right">
+        <h2 id="welcome-msg2">欢迎来到<br><span>巴基斯坦小站</span></h2>
+        <p>没有账号？</p>
+        <button id="register">去注册</button>
+      </div>
     </div>
-
-
     <script>
       let login = document.getElementById("login");
       let register = document.getElementById("register");
@@ -149,6 +144,5 @@
         login_box.classList.remove("hidden");
       });
     </script>
-</body>
-
+  </body>
 </html>
