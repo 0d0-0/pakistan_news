@@ -8,40 +8,56 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
     <link rel="stylesheet" href="../static/css/index.css">
-
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=G2q4faIwMZ5HhbNzyQqtXGOrk6o18cH1"></script>
+    <style type="text/css">  
+        html { height: 100%; }    
+        body { height: 100%; margin: 0; padding: 0; }    
+        #mapcontainer { height: 300px; /*设置高度*/
+        width: 180px;
+        margin: 0 auto;
+        border-radius: 10px; /* 设置圆角半径 */
+        background-color: #f1f1f1; /* 设置背景色 */
+        border: 5px solid #8e8e98; /* 设置边框样式 */
+        padding: 10px; }    
+    </style>
 </head>
 <body class="bg-gray-100">
     <div class="flex">
+        <div id="floatingWindow" class="floating-window">
+            <h2><p>&nbsp;超级汪汪队，出发！</p></h2>
+            <div onclick="hideFloatingWindow()" class="close-button action-button">
+                <button>&nbsp;出发！</button>
+            </div>
+        </div>
         <!-- Sidebar -->
         <div id="myDiv" style="display: none;">
-            <div class="bg-white shadow-md" style="width: 200px;">
+            <div class="bg-white shadow-md" style="width: 215px;">
                 <div class="flex flex-col justify-between h-full">
                     <div>
                         <div class="px-6 py-4">
                             <img onclick="showDiv2();toggleDiv()" src="../static/img/left.svg" class="">
                             <a href="#" onclick="showDiv2();toggleDiv()" class="text-2xl font-semibold text-gray-900 ml-[-5px]">ㅤㅤㅤㅤㅤㅤㅤ</a>
                             <div class="image-container">
-                                <img src="../static/img/烈日.png" alt="Image 1">
-                                <img src="../static/img/多云.png" alt="Image 2">
-                                <img src="../static/img/小雨.png" alt="Image 3">
-                                <img src="../static/img/大雪.png" alt="Image 4">
+                                <img src="../static/img/烈日.svg" alt="Image 1">
+                                <img src="../static/img/多云.svg" alt="Image 2">
+                                <img src="../static/img/小雨.svg" alt="Image 3">
+                                <img src="../static/img/大雪.svg" alt="Image 4">
                             </div>
                         </div>
-                        <nav class="flex flex-col px-6 mt-6 space-y-1">
-                            <a href="#" class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4">北京 晴 66°C</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-900 font-bold text-lg ">南京 晴 66°C</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4">东京 晴 66°C</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-900 font-bold text-lg ">西京 晴 66°C</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4">北京 晴 66°C</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-900 font-bold text-lg ">南京 晴 66°C</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4">东京 晴 66°C</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-900 font-bold text-lg ">西京 晴 66°C</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4">北京 晴 66°C</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-900 font-bold text-lg ">南京 晴 66°C</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4">东京 晴 66°C</a>
-                            <a href="#" class="text-gray-600 hover:text-gray-900 font-bold text-lg ">西京 晴 66°C</a>
-                          </nav>
-                          </nav>
+            
+                        <nav class="flex flex-col px-6 mt-4 space-y-1">
+                            <a  href="#"class="text-gray-600 hover:text-gray-900 font-bold  text-lg ml-4">巴基斯坦时间：</a>
+                            <a id="PakistanTime" href="#"class="text-gray-600 hover:text-gray-900 font-bold  larger-font1 ml-4"></a>
+                            <a href="#" onclick="addMarker(33.6844,73.0479);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4">伊斯兰堡 晴 66°C</a>
+                            <a href="#" onclick="addMarker(24.8607, 67.0011);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ">卡拉奇 雨 66°C</a>
+                            <a href="#" onclick="addMarker(31.5820, 74.3294);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4">拉合尔 霾 66°C</a>
+                            <a href="#" onclick="addMarker(30.1636, 71.5254);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ">木尔坦 雨 66°C</a>
+                            <a href="#" onclick="addMarker(34.01734, 71.5246);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4">白沙瓦 多云 66°C</a>
+                            <a href="#" onclick="addMarker(27.3364, 68.2413);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg">莫克兰 晴 66°C</a>
+                            <a href="#" onclick="addMarker(25.11028, 62.33994);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4">瓜达尔港 毒 66°C</a>
+                            <a href="#" class="text-gray-600 hover:text-gray-900 font-bold text-lg ">&nbsp;</a>
+                        </nav>
+                        <div id="mapcontainer" class="items-center"></div>
                     </div>
                 </div>
             </div>
@@ -57,27 +73,23 @@
                     <nav>
                         <ul class="flex space-x-8 ml-20">
                             <li class="hover:bg-gray-200 rounded hover:underline">
-                                <a href="http://pakistannews.cn/index/">首页</a>
+                                <a href="https://pakistannews.cn/index/">首页</a>
                             </li>
                             <li class="hover:bg-gray-200 rounded hover:underline">
-                                <a href="http://pakistannews.cn/culture/">文化</a>
+                                <a href="https://pakistannews.cn/culture/">文化</a>
                             </li>
                             <li class="hover:bg-gray-200 rounded hover:underline">
-                                <a href="http://pakistannews.cn/history/">历史</a>
+                                <a href="https://pakistannews.cn/history/">历史</a>
                             </li>
                             <li class="hover:bg-gray-200 rounded hover:underline">
-                                <a href="http://pakistannews.cn/diplomacy/">外交</a>
+                                <a href="https://pakistannews.cn/diplomacy/">外交</a>
                             </li>
-                            <li  class="hover:bg-gray-200 rounded hover:underline">
+                            <li onclick="showFloatingWindow()"class="hover:bg-gray-200 rounded hover:underline">
                                 <a href="#">关于我们</a>
                             </li>
                         </ul>
-    
                     </nav>
-                    <div id="myDiv3" style="display: block;">
-                        <button class="bg-gray-200 text-black py-2 px-4 rounded ml-4"><a href="http://127.0.0.1:8000/login/">登录</a></button>
-                    </div>    
-                
+                    <button class="bg-gray-200 text-black py-2 px-4 rounded ml-4">登录</button>
                 </div>
             </header>
 
@@ -87,25 +99,25 @@
                      <!-- 图片轮播 -->
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <a href="http://pakistannews.cn/culture/">
+                            <a href="#">
                                 <div class="flex justify-center">
-                                    <img src="../static/img/3.jpg" alt="A breathtaking view of a canyon with a smooth, curved sandstone formation, showcasing warm hues of red and orange under subtle lighting" class="w-2/3 h-auto rounded">
+                                    <img src="../static/img/3.jpg" alt="A breathtaking view of a canyon with a smooth, curved sandstone formation, showcasing warm hues of red and orange under subtle lighting" class="w-2/3 h-auto rounded" onclick="window.location.href='https://pakistannews.cn/culture'">
                                 </div>
-                            </a>    
+                            </a>
                         </div>
-                        <div class="carousel-item">
-                            <a href="http://pakistannews.cn/history/">
+                        <div class="carousel-item active">
+                            <a href="#">
                                 <div class="flex justify-center">
-                                    <img src="../static/img/2.jpg" alt="A breathtaking view of a canyon with a smooth, curved sandstone formation, showcasing warm hues of red and orange under subtle lighting" class="w-2/3 h-auto rounded">
+                                    <img src="../static/img/2.jpg" alt="A breathtaking view of a canyon with a smooth, curved sandstone formation, showcasing warm hues of red and orange under subtle lighting" class="w-2/3 h-auto rounded" onclick="window.location.href='https://pakistannews.cn/culture'">
                                 </div>
-                            </a>    
+                            </a>
                         </div>
-                        <div class="carousel-item">
-                            <a href="http://pakistannews.cn/diplomacy/">
+                        <div class="carousel-item active">
+                            <a href="#">
                                 <div class="flex justify-center">
-                                    <img src="../static/img/1.jpg" alt="A breathtaking view of a canyon with a smooth, curved sandstone formation, showcasing warm hues of red and orange under subtle lighting" class="w-2/3 h-auto rounded">
+                                    <img src="../static/img/3.jpg" alt="A breathtaking view of a canyon with a smooth, curved sandstone formation, showcasing warm hues of red and orange under subtle lighting" class="w-2/3 h-auto rounded" onclick="window.location.href='https://pakistannews.cn/culture'">
                                 </div>
-                            </a>    
+                            </a>
                         </div>
                     </div>
                     <div class="grid grid-cols-5 gap-4 pb-4"></div>
@@ -364,10 +376,9 @@
                     <div class="py-4">
                         <div class="flex justify-center">
                           <div class="flex rounded-md">
-                            <a href="#" onclick="showDiv(1)" class="px-4 py-2 text-gray-700 bg-white border border-r-0 border-gray-300 rounded-l-md">1</a>
-                            <a href="#" onclick="showDiv(2)" class="px-4 py-2 text-gray-700 bg-white border border-r-0 border-gray-300">2</a>
-                            <a href="#" onclick="showDiv(3)" class="px-4 py-2 text-gray-700 bg-white border border-r-0 border-gray-300 ">3</a>
-                            <!-- <a href="#" onclick="showDiv(1)" class="px-4 py-2 text-gray-700 bg-white border border-r-0 border-gray-300 rounded-r-md">></a> -->
+                            <a href="#" onclick="showDiv(1);disFunction(event)" class="px-4 py-2 text-gray-700 bg-white border border-r-0 border-gray-300 rounded-l-md">1</a>
+                            <a href="#" onclick="showDiv(2);disFunction(event)" class="px-4 py-2 text-gray-700 bg-white border border-r-0 border-gray-300">2</a>
+                            <a href="#" onclick="showDiv(3);disFunction(event)" class="px-4 py-2 text-gray-700 bg-white border border-r-0 border-gray-300 rounded-r-md">3</a>
                             </a>
                           </div>
                         </div>
@@ -377,6 +388,15 @@
             </div>
         </div>
     </div>
+    <div class="bg-white text-black py-4 text-center text-xs">
+        © 2022-2023 Developed by wangwangteam - 中巴友谊万岁
+    </div>
     <script src="../static/js/index.js"></script>
+    <script>
+        var map = new BMap.Map("mapcontainer");
+        var point = new BMap.Point(62, 38.6844); 
+        map.centerAndZoom(point, 5.5);
+        map.enableScrollWheelZoom(true);
+    </script>
 </body>
 </html>

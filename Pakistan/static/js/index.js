@@ -48,7 +48,51 @@ function showDiv2() {
     var myDiv2 = document.getElementById("myDiv2");
     myDiv2.style.display = "block";
 }
-function hideDiv3() {
-    var myDiv3 = document.getElementById("myDiv3");
-    myDiv3.style.display = "none";
+var markers = [];
+
+function addMarker(latitude, longitude) {
+    // 清除所有旧标记
+    for (var i = 0; i < markers.length; i++) {
+        map.removeOverlay(markers[i]);
+    }
+    // 添加新标记
+    var marker = new BMap.Marker(new BMap.Point(longitude, latitude));
+    map.addOverlay(marker);
+    map.panTo(new BMap.Point(longitude, latitude));
+    // 将新标记添加到标记数组中
+    markers.push(marker);
 }
+function showFloatingWindow() {
+    var floatingWindow = document.getElementById("floatingWindow");
+    floatingWindow.style.display = "block";
+}
+
+function hideFloatingWindow() {
+    var floatingWindow = document.getElementById("floatingWindow");
+    floatingWindow.style.display = "none";
+}
+function disFunction(event) {
+    event.preventDefault(); // 阻止默认行为
+    // 其他操作代码
+}
+function showPakistanTime() {
+    const timeZoneOffset = 5 * 60; // 巴基斯坦比UTC时间快5个小时
+    const pakistanTime = new Date(new Date().getTime() + timeZoneOffset * 60 * 1000);
+    const hour = pakistanTime.getHours();
+    const minute = pakistanTime.getMinutes();
+    const second = pakistanTime.getSeconds();
+    let suffix = "am";
+    let hour12 = hour;
+    if (hour >= 12) {
+      hour12 = hour - 12;
+      suffix = "pm";
+    }
+    if (hour12 === 0) {
+      hour12 = 12;  // 特殊情况，0时表示12点
+    }
+    document.getElementById("PakistanTime").innerHTML =
+      `${hour12}:${minute}:${second} ${suffix}`;
+  }
+
+  // 每秒更新一次时间
+  setInterval(showPakistanTime, 1000);
