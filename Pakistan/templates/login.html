@@ -76,7 +76,6 @@
 <body>
     <div class="container">
         <div class="form-box">
-            <!-- Register Form -->
             <div class="register-box hidden">
                 <h1>register</h1>
                 <form method="POST" action="{% url 'login_or_register' %}">
@@ -88,7 +87,6 @@
                     <button type="submit" id="registers">注册</button>
                 </form>
             </div>
-            <!-- Login Form -->
             <div class="login-box">
                 <h1>login</h1>
                 <form method="POST" action="{% url 'login_or_register' %}">
@@ -100,7 +98,6 @@
                 </form>
             </div>
         </div>
-        <!-- Content Boxes -->
         <div class="con-box left">
             <h2>欢迎来到</h2>
             <h2><span id="welcome-msg1">巴基斯坦小站</span></h2>
@@ -111,17 +108,9 @@
             <h2 id="welcome-msg2">欢迎来到<br><span>巴基斯坦小站</span></h2>
             <p>没有账号？</p>
             <button id="register">去注册</button>
-            <!-- Display messages here -->
-            <script type="text/javascript">
-                var welcomeMsg2 = document.getElementById('welcome-msg2');
-                {% if success %}
-                    welcomeMsg2.textContent = "{{ success }}";
-                {% elif error %}
-                    welcomeMsg2.textContent = "{{ error }}";
-                {% endif %}
-            </script>
         </div>
     </div>
+
 
      <script>
         let login = document.getElementById("login");
@@ -131,7 +120,6 @@
         let register_box = document.getElementsByClassName("register-box")[0];
         let login_box = document.getElementsByClassName("login-box")[0];
         let loginBtn = document.getElementById("login-btn");
-        let welcomeMsg2 = document.getElementById('welcome-msg2');
 
         register.addEventListener("click", () => {
             form_box.style.transform = "translateX(80%)";
