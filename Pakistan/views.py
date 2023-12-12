@@ -379,7 +379,7 @@ def user_register(request):
         user = User(username=username, password=password)
         user.save()
         print("注册成功")
-        return redirect(reverse('login'))
+        return render(request, "login.html")
     else:
         print("密码不一致")
         return render(request, "login.html", {"error": "两次输入的密码不一致，请重新输入"})
