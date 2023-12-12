@@ -28,6 +28,6 @@ urlpatterns = [
     path('diplomacy/', views.diplomacy),
     path('login/', views.login_or_register),
     path('login/user_register/', views.user_register),
-    path('login/user_login/', views.user_login),
+    path('login/user_login/', views.user_login, name='user_login'),
 ]
                                                                                                                         
