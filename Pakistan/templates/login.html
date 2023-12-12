@@ -112,11 +112,12 @@
     </div>
     <script>
         // 从 Django 上下文获取消息变量
-        const successMessage = "{{ success|safe }}";
-        const errorMessage = "{{ error|safe }}";
+        const successMessage = "{{ zhuce|safe }}";
+        const errorMessage = "{{ dengru|safe }}";
         
         // 获取消息展示元素
         const welcomeMsg2 = document.getElementById('welcome-msg2');
+        const welcomeMsg1 = document.getElementById('welcome-msg1');
         
         // 展示消息
         if (successMessage) {
@@ -124,9 +125,9 @@
             // 可能的成功消息样式
             welcomeMsg2.classList.add('success-message');
         } else if (errorMessage) {
-            welcomeMsg2.innerHTML = errorMessage;
+            welcomeMsg1.innerHTML = errorMessage;
             // 可能的错误消息样式
-            welcomeMsg2.classList.add('error-message');
+            welcomeMsg1.classList.add('error-message');
         }
     </script>
 

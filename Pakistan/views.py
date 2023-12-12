@@ -372,13 +372,14 @@ def login_or_register(request):
             
             if confirmpassword == password:
                 if User.objects.filter(username=username).exists():
-                    context['error'] = '用户名已存在，请重新注册'
+                    context['zhuce'] = '用户名已存在'
+                    context['show_register'] = True
                 else:
                     user = User.objects.create_user(username=username, password=password)
-                    context['success'] = '注册成功，请登录'
+                    context['zhuce'] = '注册成功，请登录'
                     return redirect('login_or_register')
             else:
-                context['error'] = "两次输入的密码不一致，请重新输入"
+                context['zhuce'] = "两次的密码不一致"
                 context['show_register'] = True  # 如果有错误，初始显示注册表单
 
         elif action == 'login':
@@ -390,6 +391,6 @@ def login_or_register(request):
                 login(request, user)
                 return redirect("https://pakistannews.cn/")  # 假设 'home' 是主页的 URL 名称
             else:
-                context['error'] = "用户名或密码错误，请重新输入"
+                context['dengru'] = "用户名或密码错误"
 
     return render(request, "login.html", context)
