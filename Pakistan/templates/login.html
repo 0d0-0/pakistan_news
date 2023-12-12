@@ -99,6 +99,15 @@
             <h2><span id="welcome-msg1">巴基斯坦小站</span></h2>
             <p>已有账号</p>
             <button id="login">去登录</button>
+            {% if messages %}
+            <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+            </ul>
+           {% endif %}
+
+<!-- 其他登录页面内容 -->
         </div>
         <div class="con-box right">
             <h2 id="welcome-msg2">欢迎来到<br><span>巴基斯坦小站</span></h2>

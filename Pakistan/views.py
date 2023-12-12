@@ -4,6 +4,7 @@ from Pakistan.models import History, Diplomacy, Culture, User
 from datetime import datetime
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 
 # Create your views here.
@@ -380,7 +381,8 @@ def user_register(request):
         user.save()
         print("注册成功")
         # return redirect("https://pakistannews.cn/login/")
-        return render(request, "login.html", {"tip": '注册成功'})
+        messages.error(request, "两次输入的密码不一致，请重新输入")
+        return redirect('login')
     else:
         print("密码不一致")
         # return redirect("https://pakistannews.cn/login/")
