@@ -124,23 +124,10 @@
             register_box.classList.remove("hidden");
         });
 
-        {#loginBtn.addEventListener("click", () => {#}
-        {#    // 假设的登录验证#}
-        {#    let username = 23; // 获取用户名#}
-        {#    let password = 2423; // 获取密码#}
-        {##}
-        {#    // 进行登录验证#}
-        {#    if (username === "your_username" && password === "your_password") {#}
-        {#        // 登录成功#}
-        {#        welcomeMsg2.textContent = "登录成功！";#}
-        {#        setTimeout(() => {#}
-        {#            window.location.href = "another_page.html"; // 跳转到另一个页面#}
-        {#        }, 2000);#}
-        {#    } else {#}
-        {#        // 登录失败#}
-        {#        welcomeMsg2.textContent = "账号或密码错误";#}
-        {#    }#}
-        {#\});#}
+        loginBtn.addEventListener("click", () => {
+            window.location.href = "https://pakistannews.cn/"; // 跳转到另一个页面
+
+        });
 
         login.addEventListener("click", () => {
             form_box.style.transform = "translateX(0%)";

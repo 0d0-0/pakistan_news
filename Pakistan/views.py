@@ -373,16 +373,18 @@ def user_register(request):
         # 检查用户名是否已经存在
         if User.objects.filter(username=username).exists():
             print("用户名已存在")
-            return redirect("https://pakistannews.cn/login/")
-
+            # return redirect("https://pakistannews.cn/login/")
+            return  render(request,"login.html",{"tip":'用户名已存在，请重新注册'})
         # 创建用户并保存到数据库
         user = User(username=username, password=password)
         user.save()
         print("注册成功")
-        return redirect("https://pakistannews.cn/login/")
+        # return redirect("https://pakistannews.cn/login/")
+        return render(request, "login.html", {"tip": '注册成功'})
     else:
         print("密码不一致")
-        return redirect("https://pakistannews.cn/login/")
+        # return redirect("https://pakistannews.cn/login/")
+        return render(request, "login.html", {"tip": '密码不一致,重新输入'})
 
 
 def user_login(request):
@@ -394,5 +396,6 @@ def user_login(request):
         # 登录成功，如果需要可以执行其他任务
         return redirect("https://pakistannews.cn/index/")
     except User.DoesNotExist:
-        # return render(request, "https://pakistannews.cn/login/", {"error": "用户名或密码错误，请重新输入"})
-        return redirect("https://pakistannews.cn/login/")
+        return render(request, "login.html", {"tip": "用户名或密码错误，请重新输入"})
+        # return redirect("https://pakistannews.cn/login/")
+
