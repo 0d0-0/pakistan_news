@@ -29,5 +29,6 @@ urlpatterns = [
     # path('login/', views.login),
     # path('register/', views.register),
     path('login/', views.login_or_register),
+    path('login/user_register', views.user_register),
 ]
                                                                                                                         
