@@ -397,6 +397,6 @@ def user_login(request):
         print("登入成功")
         return redirect("https://pakistannews.cn/index/")
     except User.DoesNotExist:
-        return render(request, "login.html", {"tip": "用户名或密码错误，请重新输入"})
+        return render(request, "Pakistan/login.html", {"tip": "用户名或密码错误，请重新输入"})
         # return redirect("https://pakistannews.cn/login/")
 
