@@ -351,7 +351,7 @@ def login_or_register(request):
     password = request.POST.get("password")
     confirmpassword = request.POST.get("confirmpassword")
 
-    if "register-btn" in request.POST:
+    if "registers" in request.POST:
         print("开始注册")
         # 注册逻辑
         if confirmpassword == password:
