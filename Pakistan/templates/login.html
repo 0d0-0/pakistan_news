@@ -112,8 +112,11 @@
     </div>
     {% if messages %}
     <script>
-    // 在页面加载完成后运行 JavaScript
-    window.onload = function() {
+      document.addEventListener('DOMContentLoaded', function() {
+        var form_box = document.querySelector('.form-box');
+        var register_box = document.querySelector('.register-box');
+        var login_box = document.querySelector('.login-box');
+    
         {% for message in messages %}
         if ("{{ message.extra_tags }}" === "register") {
             form_box.style.transform = "translateX(80%)";
@@ -121,31 +124,25 @@
             register_box.classList.remove("hidden");
         }
         {% endfor %}
-    };
+      });
+    
+      // 请确认以下绑定逻辑是否也被包含在之前您提供的<script>标签中
+      var register = document.getElementById("register");
+      var login = document.getElementById("login");
+    
+      register.addEventListener("click", function() {
+        form_box.style.transform = "translateX(80%)";
+        login_box.classList.add("hidden");
+        register_box.classList.remove("hidden");
+      });
+    
+      login.addEventListener("click", function() {
+        form_box.style.transform = "translateX(0%)";
+        register_box.classList.add("hidden");
+        login_box.classList.remove("hidden");
+      });
     </script>
     {% endif %}
-
-     <script>
-        let login = document.getElementById("login");
-        let register = document.getElementById("register");
-        let registers = document.getElementById("registers")
-        let form_box = document.getElementsByClassName("form-box")[0];
-        let register_box = document.getElementsByClassName("register-box")[0];
-        let login_box = document.getElementsByClassName("login-box")[0];
-        let loginBtn = document.getElementById("login-btn");
-
-        register.addEventListener("click", () => {
-            form_box.style.transform = "translateX(80%)";
-            login_box.classList.add("hidden");
-            register_box.classList.remove("hidden");
-        });
-        login.addEventListener("click", () => {
-            form_box.style.transform = "translateX(0%)";
-            register_box.classList.add("hidden");
-            login_box.classList.remove("hidden");
-        });
-
-    </script>
 </body>
 
 </html>
