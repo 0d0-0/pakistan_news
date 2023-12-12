@@ -387,7 +387,7 @@ def login_or_register(request):
             
             if user is not None:
                 login(request, user)
-                return redirect('home')  # 假设 'home' 是主页的 URL 名称
+                return redirect("https://pakistannews.cn/")  # 假设 'home' 是主页的 URL 名称
             else:
                 context['error'] = "用户名或密码错误，请重新输入"
 
