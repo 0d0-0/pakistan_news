@@ -110,7 +110,20 @@
             <button id="register">去注册</button>
         </div>
     </div>
-
+    {% if messages %}
+    <script>
+    // 在页面加载完成后运行 JavaScript
+    window.onload = function() {
+        {% for message in messages %}
+        if ("{{ message.extra_tags }}" === "register") {
+            form_box.style.transform = "translateX(80%)";
+            login_box.classList.add("hidden");
+            register_box.classList.remove("hidden");
+        }
+        {% endfor %}
+    };
+    </script>
+    {% endif %}
 
      <script>
         let login = document.getElementById("login");
@@ -119,31 +132,13 @@
         let form_box = document.getElementsByClassName("form-box")[0];
         let register_box = document.getElementsByClassName("register-box")[0];
         let login_box = document.getElementsByClassName("login-box")[0];
-        var welcomeMsg2 = document.getElementById("welcome-msg2");
-        welcomeMsg2.textContent = "{{ messages.error }}";
         let loginBtn = document.getElementById("login-btn");
-        const checkForRegisterError = () => {
-        {% for message in messages %}
-            if ("{{ message.tags }}" === "register_error") {
-                form_box.style.transform = "translateX(80%)";
-                login_box.classList.add("hidden");
-                register_box.classList.remove("hidden");
-            }
-        {% endfor %}
-        };
-        document.addEventListener('DOMContentLoaded', checkForRegisterError);
+
         register.addEventListener("click", () => {
             form_box.style.transform = "translateX(80%)";
             login_box.classList.add("hidden");
             register_box.classList.remove("hidden");
-            checkForRegisterError();
         });
-
-        // loginBtn.addEventListener("click", () => {
-        //     window.location.href = "https://pakistannews.cn/"; // 跳转到另一个页面
-
-        // });
-
         login.addEventListener("click", () => {
             form_box.style.transform = "translateX(0%)";
             register_box.classList.add("hidden");
