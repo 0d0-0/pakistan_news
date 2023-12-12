@@ -385,10 +385,13 @@ def user_register(request):
         return render(request, "login.html", {"error": "两次输入的密码不一致，请重新输入"})
 
 
-# def user_login(request):
-#     try:
-#         user = User.objects.get(username=username, password=password)
-#         # 登录成功，如果需要可以执行其他任务
-#         return redirect("https://pakistannews.cn/index/")
-#     except User.DoesNotExist:
-#         return render(request, "login.html", {"error": "用户名或密码错误，请重新输入"})
+def user_login(request):
+    username = request.POST.get("username2")
+    password = request.POST.get("password2")
+
+    try:
+        user = User.objects.get(username=username, password=password)
+        # 登录成功，如果需要可以执行其他任务
+        return redirect("https://pakistannews.cn/index/")
+    except User.DoesNotExist:
+        return render(request, "login.html", {"error": "用户名或密码错误，请重新输入"})
