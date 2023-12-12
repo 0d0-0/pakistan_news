@@ -64,7 +64,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
+    {% load static %}
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -87,7 +87,7 @@
             </div>
             <div class="login-box">
                 <h1>login</h1>
-                <form method="POST" action="https://pakistannews.cn/login/user_login/">
+                <form method="POST" action="{% url 'user_login' %}">
                 <input type="text" name="username2" placeholder="用户名" />
                 <input type="password" name="password2" placeholder="密码" />
                 <button id="login-btn" type="submit">登录</button>
