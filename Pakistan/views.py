@@ -343,6 +343,7 @@ def culture(request):
 
 def login_or_register(request):
     if request.method == "GET":
+        print("请求页面成功")
         return render(request, "login.html")
 
     username = request.POST.get("username")
@@ -350,18 +351,21 @@ def login_or_register(request):
     confirmpassword = request.POST.get("confirmpassword")
 
     if "register-btn" in request.POST:
+        print("开始注册")
         # 注册逻辑
         if confirmpassword == password:
             # 检查用户名是否已经存在
             if User.objects.filter(username=username).exists():
+                print("用户名已存在")
                 return render(request, "login.html", {"error": "该用户名已存在，请选择其他用户名"})
             
             # 创建用户并保存到数据库
             user = User(username=username, password=password)
             user.save()
-            print(User.objects.filter(username=username).exists())
+            print("注册成功")
             return redirect(reverse('login'))
         else:
+            print("密码不一致")
             return render(request, "login.html", {"error": "两次输入的密码不一致，请重新输入"})
     else:
         # 登录逻辑
