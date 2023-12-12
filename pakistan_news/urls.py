@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Pakistan import views
-
+app_name = 'Pakistan'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('welcome/', views.welcome),
