@@ -19,6 +19,7 @@ from django.urls import path
 from Pakistan import views
 app_name = 'Pakistan'
 urlpatterns = [
+    path('pakistan_news/', include('pakistan_news.urls')),
     path('admin/', admin.site.urls),
     path('welcome/', views.welcome),
     path('index/', views.index),
