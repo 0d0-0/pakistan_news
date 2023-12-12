@@ -355,39 +355,40 @@ def culture(request):
 
 #     return render(request, "register.html", {"error": "两次输入的密码不一致，请重新输入"})
 
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
+
 def login_or_register(request):
+    context = {}  # 定义一个空字典来传递信息到模板
+    
     if request.method == 'POST':
         action = request.POST.get('action')
 
         if action == 'register':
-            # 提取注册表单字段
             username = request.POST.get("username1")
             password = request.POST.get("password1")
             confirmpassword = request.POST.get("confirmpassword")
-            # 注册逻辑
+            
             if confirmpassword == password:
-                # 检查用户名是否已经存在
                 if User.objects.filter(username=username).exists():
-                    messages.error(request, '用户名已存在，请重新注册')
+                    context['error'] = '用户名已存在，请重新注册'
                 else:
-                    # 创建用户并保存到数据库
                     user = User.objects.create_user(username=username, password=password)
-                    messages.success(request, '注册成功，请登录')
+                    context['success'] = '注册成功，请登录'
                     return redirect('login_or_register')
             else:
-                messages.error(request, "两次输入的密码不一致，请重新输入")
+                context['error'] = "两次输入的密码不一致，请重新输入"
 
         elif action == 'login':
-            # 提取登录表单字段
             username = request.POST.get("username2")
             password = request.POST.get("password2")
-            # 登录逻辑
             user = authenticate(username=username, password=password)
+            
             if user is not None:
                 login(request, user)
-                # 登录成功重定向到主页(例如)
-                return redirect('https://pakistannews.cn/')
+                return redirect('home')  # 假设 'home' 是主页的 URL 名称
             else:
-                messages.error(request, "用户名或密码错误，请重新输入")
+                context['error'] = "用户名或密码错误，请重新输入"
 
-    return render(request, "login.html")
+    return render(request, "login.html", context)
