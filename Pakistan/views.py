@@ -356,50 +356,38 @@ def culture(request):
 #     return render(request, "register.html", {"error": "两次输入的密码不一致，请重新输入"})
 
 def login_or_register(request):
-    print("草拟吗")
-    print("请求页面成功")
+    if request.method == 'POST':
+        action = request.POST.get('action')
+
+        if action == 'register':
+            # 提取注册表单字段
+            username = request.POST.get("username1")
+            password = request.POST.get("password1")
+            confirmpassword = request.POST.get("confirmpassword")
+            # 注册逻辑
+            if confirmpassword == password:
+                # 检查用户名是否已经存在
+                if User.objects.filter(username=username).exists():
+                    messages.error(request, '用户名已存在，请重新注册')
+                else:
+                    # 创建用户并保存到数据库
+                    user = User.objects.create_user(username=username, password=password)
+                    messages.success(request, '注册成功，请登录')
+                    return redirect('login_or_register')
+            else:
+                messages.error(request, "两次输入的密码不一致，请重新输入")
+
+        elif action == 'login':
+            # 提取登录表单字段
+            username = request.POST.get("username2")
+            password = request.POST.get("password2")
+            # 登录逻辑
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                # 登录成功重定向到主页(例如)
+                return redirect('home')
+            else:
+                messages.error(request, "用户名或密码错误，请重新输入")
+
     return render(request, "login.html")
-
-
-
-def user_register(request):
-    username = request.POST.get("username1")
-    password = request.POST.get("password1")
-    confirmpassword = request.POST.get("confirmpassword")
-    print(request.POST)
-
-    print("开始注册")
-    # 注册逻辑
-    if confirmpassword == password:
-        # 检查用户名是否已经存在
-        if User.objects.filter(username=username).exists():
-            print("用户名已存在")
-            # return redirect("https://pakistannews.cn/login/")
-            return  render(request,"login.html",{"tip":'用户名已存在，请重新注册'})
-        # 创建用户并保存到数据库
-        user = User(username=username, password=password)
-        user.save()
-        print("注册成功")
-        # return redirect("https://pakistannews.cn/login/")
-    else:
-        print("密码不一致")
-        # return redirect("https://pakistannews.cn/login/")
-        messages.error(request, "两次输入的密码不一致，请重新输入")
-        return redirect("https://pakistannews.cn/login/")
-
-
-def user_login(request):
-    username = request.POST.get("username2")
-    password = request.POST.get("password2")
-
-    try:
-        user = User.objects.get(username=username, password=password)
-        # 登录成功，如果需要可以执行其他任务
-        print("cg")
-        messages.error(request, "drvg")
-        return redirect("https://pakistannews.cn/login/")
-
-    except User.DoesNotExist:
-        return render(request, "login.html", {"tip": "用户名或密码错误，请重新输入"})
-        # return redirect("https://pakistannews.cn/login/")
-

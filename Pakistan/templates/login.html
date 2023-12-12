@@ -78,19 +78,23 @@
         <div class="form-box">
             <div class="register-box hidden">
                 <h1>register</h1>
-                <form method="POST" action="https://pakistannews.cn/login/user_register/">
-                <input type="text" name="username1" placeholder="用户名" />
-                <input type="password" name="password1" placeholder="密码" />
-                <input type="password" name="confirmpassword" placeholder="确认密码" />
-                <button type="submit" id="registers">注册</button>
-                    </form>
+                <form method="POST" action="{% url 'login_or_register' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="register">
+                    <input type="text" name="username1" placeholder="用户名" required />
+                    <input type="password" name="password1" placeholder="密码" required />
+                    <input type="password" name="confirmpassword" placeholder="确认密码" required />
+                    <button type="submit" id="registers">注册</button>
+                </form>
             </div>
             <div class="login-box">
                 <h1>login</h1>
-                <form method="POST" action="{% url 'user_login' %}">
-                <input type="text" name="username2" placeholder="用户名" />
-                <input type="password" name="password2" placeholder="密码" />
-                <button id="login-btn" type="submit">登录</button>
+                <form method="POST" action="{% url 'login_or_register' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="action" value="login">
+                    <input type="text" name="username2" placeholder="用户名" required />
+                    <input type="password" name="password2" placeholder="密码" required />
+                    <button id="login-btn" type="submit">登录</button>
                 </form>
             </div>
         </div>

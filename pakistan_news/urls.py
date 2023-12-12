@@ -26,8 +26,6 @@ urlpatterns = [
     path('history/', views.history),
     path('culture/', views.culture),
     path('diplomacy/', views.diplomacy),
-    path('login/', views.login_or_register),
-    path('login/user_register/', views.user_register),
-    path('login/user_login/', views.user_login, name='user_login'),
+    path('login/', views.login_or_register, name='login_or_register'),
 ]
                                                                                                                         
