@@ -342,6 +342,7 @@ def culture(request):
 #     return render(request, "register.html", {"error": "两次输入的密码不一致，请重新输入"})
 
 def login_or_register(request):
+    print("草拟吗")
     if request.method == "GET":
         print("请求页面成功")
         return render(request, "login.html")
