@@ -386,7 +386,7 @@ def login_or_register(request):
             if user is not None:
                 login(request, user)
                 # 登录成功重定向到主页(例如)
-                return redirect('home')
+                return redirect('https://pakistannews.cn/')
             else:
                 messages.error(request, "用户名或密码错误，请重新输入")
 
