@@ -396,7 +396,9 @@ def user_login(request):
         user = User.objects.get(username=username, password=password)
         # 登录成功，如果需要可以执行其他任务
         print("cg")
-        return redirect("https://pakistannews.cn/index/")
+        messages.error(request, "drvg")
+        return redirect("https://pakistannews.cn/login/")
+
     except User.DoesNotExist:
         return render(request, "login.html", {"tip": "用户名或密码错误，请重新输入"})
         # return redirect("https://pakistannews.cn/login/")

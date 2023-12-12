@@ -124,7 +124,8 @@
         let form_box = document.getElementsByClassName("form-box")[0];
         let register_box = document.getElementsByClassName("register-box")[0];
         let login_box = document.getElementsByClassName("login-box")[0];
-        let welcomeMsg2 = document.getElementById("welcome-msg2");
+        var welcomeMsg2 = document.getElementById("welcome-msg2");
+        welcomeMsg2.textContent = "{{ messages.error }}";
         let loginBtn = document.getElementById("login-btn");
 
         register.addEventListener("click", () => {
@@ -133,10 +134,10 @@
             register_box.classList.remove("hidden");
         });
 
-        loginBtn.addEventListener("click", () => {
-            window.location.href = "https://pakistannews.cn/"; // 跳转到另一个页面
+        // loginBtn.addEventListener("click", () => {
+        //     window.location.href = "https://pakistannews.cn/"; // 跳转到另一个页面
 
-        });
+        // });
 
         login.addEventListener("click", () => {
             form_box.style.transform = "translateX(0%)";
