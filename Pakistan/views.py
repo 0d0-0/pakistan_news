@@ -362,8 +362,8 @@ def login_or_register(request):
 
 
 def user_register(request):
-    username = request.POST.get("username")
-    password = request.POST.get("password")
+    username = request.POST.get("username1")
+    password = request.POST.get("password1")
     confirmpassword = request.POST.get("confirmpassword")
     print(request.POST)
 

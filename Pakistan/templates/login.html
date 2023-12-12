@@ -78,8 +78,7 @@
         <div class="form-box">
             <div class="register-box hidden">
                 <h1>register</h1>
-                <form method="post" action="https://pakistannews.cn/login/">
-                    {% csrf_token %}
+                <form method="POST" action="https://pakistannews.cn/user_register/">
                 <input type="text" name="username1" placeholder="用户名" />
                 <input type="password" name="password1" placeholder="密码" />
                 <input type="password" name="confirmpassword" placeholder="确认密码" />
@@ -150,16 +149,16 @@
             login_box.classList.remove("hidden");
         });
 
-        registers.addEventListener("click", () => {
-            let username = document.getElementById("username1").value;
-            let password = document.getElementById("password1").value;
-            let confirmpassword = document.getElementById("confirmpassword").value;
-
-            var httpRequest = new XMLHttpRequest();
-            httpRequest.open('POST', 'https://pakistannews.cn/user_register', true);
-            httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-            httpRequest.send("username=" + username + "&password=" + password + "&confirmpassword=" + confirmpassword);
-        })
+        {#registers.addEventListener("click", () => {#}
+        {#    let username = document.getElementById("username1").value;#}
+        {#    let password = document.getElementById("password1").value;#}
+        {#    let confirmpassword = document.getElementById("confirmpassword").value;#}
+        {##}
+        {#    var httpRequest = new XMLHttpRequest();#}
+        {#    httpRequest.open('POST', 'https://pakistannews.cn/user_register', true);#}
+        {#    httpRequest.setRequestHeader("Content-type","application/x-www-form-urlencoded");#}
+        {#    httpRequest.send("username=" + username + "&password=" + password + "&confirmpassword=" + confirmpassword);#}
+        {#\})#}
     </script>
 </body>
 
