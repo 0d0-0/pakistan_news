@@ -385,8 +385,8 @@ def user_register(request):
         print("密码不一致")
         # return redirect("https://pakistannews.cn/login/")
         messages.error(request, "两次输入的密码不一致，请重新输入")
-        messages.error(request, "这是消息2")
         return redirect("https://pakistannews.cn/login/")
+
 
 def user_login(request):
     username = request.POST.get("username2")

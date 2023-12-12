@@ -17,9 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from Pakistan import views
-app_name = 'Pakistan'
+
 urlpatterns = [
-    path('pakistan_news/', include('pakistan_news.urls')),
     path('admin/', admin.site.urls),
     path('welcome/', views.welcome),
     path('index/', views.index),
@@ -29,6 +28,6 @@ urlpatterns = [
     path('diplomacy/', views.diplomacy),
     path('login/', views.login_or_register),
     path('login/user_register/', views.user_register),
-    path('login/user_login/', views.user_login, name='user_login'),
+    path('login/user_login/', views.user_login),
 ]
                                                                                                                         
