@@ -130,28 +130,37 @@
         }
     </script>
 
-     <script>
-        let login = document.getElementById("login");
-        let register = document.getElementById("register");
-        let registers = document.getElementById("registers")
-        let form_box = document.getElementsByClassName("form-box")[0];
-        let register_box = document.getElementsByClassName("register-box")[0];
-        let login_box = document.getElementsByClassName("login-box")[0];
-        let loginBtn = document.getElementById("login-btn");
+<script>
+    let login = document.getElementById("login");
+    let register = document.getElementById("register");
+    let form_box = document.getElementsByClassName("form-box")[0];
+    let register_box = document.getElementsByClassName("register-box")[0];
+    let login_box = document.getElementsByClassName("login-box")[0];
 
-        register.addEventListener("click", () => {
+    register.addEventListener("click", () => {
+        form_box.style.transform = "translateX(80%)";
+        login_box.classList.add("hidden");
+        register_box.classList.remove("hidden");
+    });
+
+    login.addEventListener("click", () => {
+        form_box.style.transform = "translateX(0%)";
+        register_box.classList.add("hidden");
+        login_box.classList.remove("hidden");
+    });
+
+    // 从 Django 上下文获取 show_register 变量
+    const showRegister = "{{ show_register }}";
+
+    // 页面加载完成时，根据 show_register 状态切换到注册表单
+    window.onload = () => {
+        if (showRegister === "True") {
             form_box.style.transform = "translateX(80%)";
             login_box.classList.add("hidden");
             register_box.classList.remove("hidden");
-        });
-
-        login.addEventListener("click", () => {
-            form_box.style.transform = "translateX(0%)";
-            register_box.classList.add("hidden");
-            login_box.classList.remove("hidden");
-        });
-
-    </script>
+        }
+    };
+</script>
 </body>
 
 </html>

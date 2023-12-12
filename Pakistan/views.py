@@ -361,7 +361,7 @@ from django.contrib.auth.models import User
 
 def login_or_register(request):
     context = {}  # 定义一个空字典来传递信息到模板
-    
+    context = {'show_register': False}  # 默认显示登录表单
     if request.method == 'POST':
         action = request.POST.get('action')
 
@@ -379,6 +379,7 @@ def login_or_register(request):
                     return redirect('login_or_register')
             else:
                 context['error'] = "两次输入的密码不一致，请重新输入"
+                context['show_register'] = True  # 如果有错误，初始显示注册表单
 
         elif action == 'login':
             username = request.POST.get("username2")
