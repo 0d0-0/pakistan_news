@@ -381,12 +381,11 @@ def user_register(request):
         user.save()
         print("注册成功")
         # return redirect("https://pakistannews.cn/login/")
-        messages.error(request, "两次输入的密码不一致，请重新输入")
-        return redirect('login')
     else:
         print("密码不一致")
         # return redirect("https://pakistannews.cn/login/")
-        return render(request, "login.html", {"tip": '密码不一致,重新输入'})
+        messages.error(request, "两次输入的密码不一致，请重新输入")
+        return redirect("https://pakistannews.cn/login/")
 
 
 def user_login(request):
