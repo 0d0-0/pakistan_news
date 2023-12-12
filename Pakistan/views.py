@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
-
+import time
 def welcome(request):
     if request.method == "GET":
         return render(request, 'welcome.html')
@@ -388,6 +388,8 @@ def login_or_register(request):
             
             if user is not None:
                 login(request, user)
+                context['dengru'] = "登入成功"
+                time.sleep(0.7)
                 return redirect("https://pakistannews.cn/")  # 假设 'home' 是主页的 URL 名称
             else:
                 context['dengru'] = "用户名或密码错误"
