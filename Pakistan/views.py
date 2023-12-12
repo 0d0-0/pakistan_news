@@ -375,7 +375,7 @@ def login_or_register(request):
                     messages.success(request, '注册成功，请登录')
                     return redirect('login_or_register')
             else:
-                messages.error(request, "两次输入的密码不一致，请重新输入", extra_tags='register_error')
+                messages.error(request, "两次输入的密码不一致，请重新输入")
 
         elif action == 'login':
             # 提取登录表单字段
