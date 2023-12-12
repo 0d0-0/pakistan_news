@@ -355,7 +355,7 @@ def culture(request):
 
 #     return render(request, "register.html", {"error": "两次输入的密码不一致，请重新输入"})
 
-def login_or_register(request):
+def login(request):
     print("草拟吗")
     print("请求页面成功")
     return render(request, "login.html")
@@ -384,9 +384,9 @@ def user_register(request):
     else:
         print("密码不一致")
         # return redirect("https://pakistannews.cn/login/")
-        messages.error(request, "两次输入的密码不一致，请重新输入")
+        messages.error(request, "这是消息1")
+        messages.error(request, "这是消息2")
         return redirect("https://pakistannews.cn/login/")
-
 
 def user_login(request):
     username = request.POST.get("username2")
