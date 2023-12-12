@@ -377,7 +377,6 @@ def login_or_register(request):
                 else:
                     user = User.objects.create_user(username=username, password=password)
                     context['dengru'] = '注册成功，请登录'
-                    return redirect('login_or_register')
             else:
                 context['zhuce'] = "两次的密码不一致"
                 context['show_register'] = True  # 如果有错误，初始显示注册表单
