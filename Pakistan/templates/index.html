@@ -89,7 +89,7 @@
                             </li>
                         </ul>
                     </nav>
-                    <button class="bg-gray-200 text-black py-2 px-4 rounded ml-4"><a href="https://pakistannews.cn/login/">登录</a></button>
+                    <button id="login" class="bg-gray-200 text-black py-2 px-4 rounded ml-4"><a href="https://pakistannews.cn/login/">登录</a></button>
                 </div>
             </header>
 
@@ -397,6 +397,24 @@
         var point = new BMap.Point(62, 38.6844); 
         map.centerAndZoom(point, 5.5);
         map.enableScrollWheelZoom(true);
+    </script>
+    <script>
+        // 当页面完全加载完成时执行的函数
+        window.onload = function() {
+            // 检查是否有登录消息元素，以及它的内容是不是表示登录成功
+            var loginMessage = document.getElementById("loginMessage");
+            if (loginMessage && loginMessage.textContent === "登入成功") {
+                showlogin(); // 调用 showlogin 函数隐藏登录按钮
+            }
+        };
+
+        // 隐藏登录按钮的函数
+        function showlogin() {
+            var loginbtn = document.getElementById("login");
+            if (loginbtn) {
+                loginbtn.style.display = "none";
+            }
+        }
     </script>
 </body>
 </html>
