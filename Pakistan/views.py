@@ -389,7 +389,8 @@ def login_or_register(request):
             if user is not None:
                 login(request, user)
                 context['dengru'] = "登入成功"
-                return redirect("https://pakistannews.cn/")  # 假设 'home' 是主页的 URL 名称
+                # return redirect("https://pakistannews.cn/")  # 假设 'home' 是主页的 URL 名称
+                return render(request, "index.html", context)
             else:
                 context['dengru'] = "用户名或密码错误"
 
