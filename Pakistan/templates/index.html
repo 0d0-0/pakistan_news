@@ -90,6 +90,10 @@
                         </ul>
                     </nav>
                     <button id="login" class="bg-gray-200 text-black py-2 px-4 rounded ml-4"><a href="https://pakistannews.cn/login/">登录</a></button>
+                    {% if dengru %}
+                    <p id="loginMessage">{{ dengru }}</p>
+                {% endif %}
+            
                 </div>
             </header>
 
