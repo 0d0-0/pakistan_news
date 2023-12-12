@@ -356,9 +356,9 @@ def culture(request):
 
 def login_or_register(request):
     print("草拟吗")
-    if request.method == "GET":
-        print("请求页面成功")
-        return render(request, "login.html")
+    print("请求页面成功")
+    return render(request, "login.html")
+
 
 
 def user_register(request):
