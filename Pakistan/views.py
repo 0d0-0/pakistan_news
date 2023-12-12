@@ -365,6 +365,7 @@ def user_register(request):
     username = request.POST.get("username")
     password = request.POST.get("password")
     confirmpassword = request.POST.get("confirmpassword")
+    print(request.POST)
 
     print("开始注册")
     # 注册逻辑
