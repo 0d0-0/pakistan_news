@@ -407,7 +407,7 @@
         window.onload = function() {
             // 检查是否有登录消息元素，以及它的内容是不是表示登录成功
             var loginMessage = document.getElementById("loginMessage");
-            if (loginMessage && loginMessage.textContent === "登入成功") {
+            if (loginMessage) {
                 showlogin(); // 调用 showlogin 函数隐藏登录按钮
             }
         };
