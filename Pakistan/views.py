@@ -359,6 +359,7 @@ def login_or_register(request):
             # 创建用户并保存到数据库
             user = User(username=username, password=password)
             user.save()
+            print(User.objects.filter(username=username).exists())
             return redirect(reverse('login'))
         else:
             return render(request, "login.html", {"error": "两次输入的密码不一致，请重新输入"})
