@@ -27,6 +27,7 @@ def index(request):  # 目录
 
 def history(request):  # 历史
     if request.method == "GET":
+        user_username = request.session.get('dengru', None)
         # 把数据先放进test_records中
         test_records = [
             History(times='旧石器时代',
@@ -92,7 +93,11 @@ H.G. Rowlinson评论道:
         except EmptyPage:
             # 如果page超出范围  显示最后一页
             items = paginator.page(paginator.num_pages)
-        return render(request, 'history.html', {'data_list': items})
+            context = {
+           'dengru': user_username,
+           'data_list': items,
+                   }
+        return render(request, 'history.html', context)
 
 
 def diplomacy(request):
