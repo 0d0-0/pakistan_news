@@ -90,14 +90,13 @@
                         </ul>
                     </nav>
                     <button id="login" class="bg-gray-200 text-black py-2 px-4 rounded ml-4"><a href="https://pakistannews.cn/login/">登录</a></button>
-                    {% if dengru %}
-                    {% if dengru == "onexu" or dengru == "superxb" or dengru == "yd"%}
-                        <p id="loginMessage">管理员 {{ dengru }} 已登入</p>
+                    {% if request.user.is_authenticated %}
+                    {% if request.user.is_superuser %}
+                        <p id="loginMessage">管理员 {{ request.user.username }} 已登入</p>
                     {% else %}
-                        <p id="loginMessage">用户 {{ dengru }} 已登入</p>
+                        <p id="loginMessage">用户 {{ request.user.username }} 已登入</p>
                     {% endif %}
-                {% endif %}
-            
+                    {% endif %}
                 </div>
             </header>
 
