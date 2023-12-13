@@ -16,8 +16,14 @@ def welcome(request):
 
 def index(request):  # 目录
     if request.method == "GET":
-        return render(request, 'index.html')
-
+        # 从会话中检索用户登录状态信息
+        user_username = request.session.get('dengru', None)
+        
+        # 创建 context 字典
+        context = {'dengru': user_username} if user_username else {}
+        
+        # 传递 context 到模板
+        return render(request, 'index.html', context)
 
 def history(request):  # 历史
     if request.method == "GET":
@@ -387,10 +393,9 @@ def login_or_register(request):
             user = authenticate(username=username, password=password)
             
             if user is not None:
-                login(request, user)
-                context['dengru'] = user.username
-                # return redirect("https://pakistannews.cn/")  # 假设 'home' 是主页的 URL 名称
-                return render(request, "index.html", context)
+               login(request, user)
+               request.session['dengru'] = user.username  # 设置session变量
+               return redirect('home')
             else:
                 context['dengru'] = "用户名或密码错误"
 
