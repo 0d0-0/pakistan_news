@@ -423,10 +423,19 @@
             }
         }
         function showlogin() {
-            var loginbtn = document.getElementById("login");
-                loginbtn.style.display = "block";
-                loginMessage=0;
-        }
+    // 显示登录按钮
+    var loginbtn = document.getElementById("login");
+    if (loginbtn) {
+        loginbtn.style.display = "block";
+    }
+
+    // 移除登录消息元素，模仿用户已经退出登录
+    var loginMessage = document.getElementById("loginMessage");
+    if (loginMessage) {
+        loginMessage.parentNode.removeChild(loginMessage);
+    }
+    
+}
     </script>
 </body>
 </html>
