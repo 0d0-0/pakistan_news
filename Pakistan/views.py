@@ -395,7 +395,7 @@ def login_or_register(request):
             if user is not None:
                login(request, user)
                request.session['dengru'] = user.username  # 设置session变量
-               return redirect('home')
+               return redirect('index.html')
             else:
                 context['dengru'] = "用户名或密码错误"
 
