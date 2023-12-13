@@ -48,13 +48,13 @@
                         <nav class="flex flex-col px-6 mt-4 space-y-1">
                             <a  href="#"class="text-gray-600 hover:text-gray-900 font-bold  text-lg ml-4">巴基斯坦时间：</a>
                             <a id="PakistanTime" href="#"class="text-gray-600 hover:text-gray-900 font-bold  larger-font1 ml-4"></a>
-                            <a href="#" onclick="addMarker(33.6844,73.0479);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4">伊斯兰堡 晴 66°C</a>
-                            <a href="#" onclick="addMarker(24.8607, 67.0011);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ">卡拉奇 雨 66°C</a>
-                            <a href="#" onclick="addMarker(31.5820, 74.3294);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4">拉合尔 霾 66°C</a>
-                            <a href="#" onclick="addMarker(30.1636, 71.5254);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ">木尔坦 雨 66°C</a>
-                            <a href="#" onclick="addMarker(34.01734, 71.5246);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4">白沙瓦 多云 66°C</a>
-                            <a href="#" onclick="addMarker(27.3364, 68.2413);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg">莫克兰 晴 66°C</a>
-                            <a href="#" onclick="addMarker(25.11028, 62.33994);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4">瓜达尔港 毒 66°C</a>
+                            <a href="#" onclick="addMarker(33.6844,73.0479);disFunction(event)"class="text-gray-600 hover:text-gray-900 hover:underline font-bold text-lg ml-4">伊斯兰堡 晴 66°C</a>
+                            <a href="#" onclick="addMarker(24.8607, 67.0011);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg hover:underline">卡拉奇 雨 66°C</a>
+                            <a href="#" onclick="addMarker(31.5820, 74.3294);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4 hover:underline">拉合尔 霾 66°C</a>
+                            <a href="#" onclick="addMarker(30.1636, 71.5254);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg hover:underline">木尔坦 雨 66°C</a>
+                            <a href="#" onclick="addMarker(34.01734, 71.5246);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4 hover:underline">白沙瓦 多云 66°C</a>
+                            <a href="#" onclick="addMarker(27.3364, 68.2413);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg hover:underline">莫克兰 晴 66°C</a>
+                            <a href="#" onclick="addMarker(25.11028, 62.33994);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4 hover:underline">瓜达尔港 毒 66°C</a>
                             <a href="#" class="text-gray-600 hover:text-gray-900 font-bold text-lg ">&nbsp;</a>
                         </nav>
                         <div id="mapcontainer" class="items-center"></div>
@@ -92,9 +92,9 @@
                     <a href="https://pakistannews.cn/login/"><button id="login" class="bg-gray-200 text-black py-2 px-4 rounded ml-4">登录</button></a>
                     {% if request.user.is_authenticated %}
                     {% if request.user.is_superuser %}
-                        <p onclick="showlogin()" id="loginMessage" title="退出登入">管理员 {{ request.user.username }} 已登入</p>
+                        <p onclick="showlogin()" id="loginMessage" title="退出登入" class="hover:underline">管理员 {{ request.user.username }} 已登入</p>
                     {% else %}
-                        <p onclick="showlogin()" id="loginMessage" title="退出登入">用户 {{ request.user.username }} 已登入</p>
+                        <p onclick="showlogin()" id="loginMessage" title="退出登入" class="hover:underline">用户 {{ request.user.username }} 已登入</p>
                     {% endif %}
                     {% endif %}
                 </div>
