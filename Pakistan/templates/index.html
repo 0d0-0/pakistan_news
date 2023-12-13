@@ -92,9 +92,9 @@
                     <a href="https://pakistannews.cn/login/"><button id="login" class="bg-gray-200 text-black py-2 px-4 rounded ml-4">登录</button></a>
                     {% if request.user.is_authenticated %}
                     {% if request.user.is_superuser %}
-                        <p id="loginMessage">管理员 {{ request.user.username }} 已登入</p>
+                        <p onclick="showlogin()" id="loginMessage">管理员 {{ request.user.username }} 已登入</p>
                     {% else %}
-                        <p id="loginMessage">用户 {{ request.user.username }} 已登入</p>
+                        <p onclick="showlogin()" id="loginMessage">用户 {{ request.user.username }} 已登入</p>
                     {% endif %}
                     {% endif %}
                 </div>
@@ -411,16 +411,21 @@
             // 检查是否有登录消息元素，以及它的内容是不是表示登录成功
             var loginMessage = document.getElementById("loginMessage");
             if (loginMessage) {
-                showlogin(); // 调用 showlogin 函数隐藏登录按钮
+                hidlogin(); // 调用 hidlogin 函数隐藏登录按钮
             }
         };
 
         // 隐藏登录按钮的函数
-        function showlogin() {
+        function hidlogin() {
             var loginbtn = document.getElementById("login");
             if (loginbtn) {
                 loginbtn.style.display = "none";
             }
+        }
+        function showlogin() {
+            var loginbtn = document.getElementById("login");
+                loginbtn.style.display = "block";
+                loginMessage=0;
         }
     </script>
 </body>
