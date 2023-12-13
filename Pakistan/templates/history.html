@@ -64,7 +64,7 @@
       text-align: center;
       padding: 10px 0;
       margin-top: 10px;
-      background-color: #f9f9f9;
+      background-color: transparent;
       border-top: 1px solid #e2e2e2;
     }
 
@@ -113,16 +113,16 @@
         </div>
     </header>
     <section class="my-4 mx-6 ">
-      <div class="bg-white p-4 rounded ml-auto mr-auto flex justify-center"style="width: 70%">
+      <div class="bg-white p-4 rounded ml-auto mr-auto flex justify-center"style="width: 85%">
           <div class="max-w-2xl mx-auto py-12 px-6">
     <div class="bar">
         <h1>The History of Pakistan</h1>
     </div>
-    <div>
+    <div style="display: flex; justify-content: center;">
         <h3>目录<h6>(点击下方目录即可跳转到相应内容)</h6>
         </h3>
     </div>
-    <ol>
+    <ol style="text-align: center;">
 
         {% for item in data_list %}
         <li><a href="#{{item.id}}">{{item.times}}</a></li>
