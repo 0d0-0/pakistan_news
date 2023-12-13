@@ -93,10 +93,7 @@ H.G. Rowlinson评论道:
         except EmptyPage:
             # 如果page超出范围  显示最后一页
             items = paginator.page(paginator.num_pages)
-            context = {
-           'dengru': user_username,
-           'data_list': items,
-                   }
+        context = {'dengru': user_username,'data_list': items,}
         return render(request, 'history.html', context)
 
 
