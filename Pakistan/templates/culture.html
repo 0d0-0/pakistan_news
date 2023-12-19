@@ -7,79 +7,142 @@
     <title>巴基斯坦文化大事纪</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <link rel="stylesheet" href="../static/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     </link>
-    <link rel="stylesheet" href="../static/css/culture.css">
+    <link rel="stylesheet" href="../static/css/history.css">
 </head>
 
 <body>
     <!-- 顶部导航栏 -->
-    <header class="text-gray-700 py-4">
-        <div class="container mx-auto flex justify-between items-center px-6">
-            <a href="https://pakistannews.cn/"><div class="text-3xl font-bold">巴基斯坦の小站</div></a>
-            <nav>
-                <ul class="flex space-x-8">
-                    <li class="hover:text-black-500 hover:underline"><a href="https://pakistannews.cn/index/">首页</a></li>
-                    <li class="hover:bg-gray-200"><a href="https://pakistannews.cn/culture/">文化</a></li>
-                    <li class="hover:bg-gray-200"><a href="https://pakistannews.cn/history/">历史</a></li>
-                    <li class="hover:bg-gray-200"><a href="https://pakistannews.cn/diplomacy/">外交</a></li>
-                    <li class="hover:bg-gray-200">关于我们</li>
-                </ul>
-            </nav>
-            <button class="bg-gray-200 text-black py-2 px-4 rounded">登录</button>
-        </div>
+    <header class="text-gray-700 py-4">  
+      <div class="container mx-auto flex justify-between items-center px-6">
+          <a href="https://pakistannews.cn/"><div class="text-3xl font-bold">巴基斯坦の小站</div></a>
+          <nav>
+              <ul class="flex space-x-8 ml-20">
+                  <li class="hover:bg-gray-200 rounded hover:underline">
+                      <a href="https://pakistannews.cn/index/">首页</a>
+                  </li>
+                  <li class="hover:bg-gray-200 rounded hover:underline">
+                      <a href="https://pakistannews.cn/culture/">文化</a>
+                  </li>
+                  <li class="hover:bg-gray-200 rounded hover:underline">
+                      <a href="https://pakistannews.cn/history/">历史</a>
+                  </li>
+                  <li class="hover:bg-gray-200 rounded hover:underline">
+                      <a href="https://pakistannews.cn/diplomacy/">外交</a>
+                  </li>
+                  <li onclick="showFloatingWindow()"class="hover:bg-gray-200 rounded hover:underline">
+                      <a href="#">关于我们</a>
+                  </li>
+              </ul>
+          </nav>
+          <a href="https://pakistannews.cn/login/"><button id="login" class="bg-gray-200 text-black py-2 px-4 rounded ml-4">登录</button></a>
+          {% if request.user.is_authenticated %}
+          {% if request.user.is_superuser %}
+              <p onclick="showlogin()" id="loginMessage" title="退出登入" class="hover:underline hover:bg-gray-200 rounded">管理员 {{ request.user.username }} 已登入</p>
+          {% else %}
+              <p onclick="showlogin()" id="loginMessage" title="退出登入" class="hover:underline hover:bg-gray-200 rounded">用户 {{ request.user.username }} 已登入</p>
+          {% endif %}
+          {% endif %}
+      </div>
     </header>
-    <div class="bar">
-        <h1>The Culture of Pakistan</h1>
-    </div>
-    <div>
-        <h3>目录<h6>(点击下方目录即可跳转到相应内容)</h6>
-        </h3>
-    </div>
-    <ol>
-
-        {% for item in data_list %}
-        <li><a href="#{{item.id}}">{{item.aspect}}</a></li>
-        {% endfor %}
-
-    </ol>
-    <div class="barlist">
-
-        {% for item in data_list %}
-        <div class="listbox1" id="{{item.id}}">
-            <h2 class="data1">{{ item.aspect }}</h2>
-            <hr>
-            <div>
-                <p class="data2">
-                <p>
+    <section class="my-4 mx-6 ">
+      <div class="bg-white p-4 rounded ml-auto mr-auto flex justify-center"style="width: 85%">
+          <div class="max-w-2xl mx-auto py-12 px-0">
+            <div class="bar">
+                <h1>The Culture of Pakistan</h1>
             </div>
             <div>
-                <h5 class="data3">{{ item.text }}</h5>
+                <h3>目录<h6>(点击下方目录即可跳转到相应内容)</h6>
+                </h3>
             </div>
-            <hr>
-        </div>
-        {% endfor %}
-    </div>
-    <div class="pagination">
-        <span class="step-links">
-            <div>
-                <span class="current">
-                    Page {{ data_list.number }} of {{ data_list.paginator.num_pages }}.
+            <ol>
+        
+                {% for item in data_list %}
+                <li><a href="#{{item.id}}">{{item.aspect}}</a></li>
+                {% endfor %}
+        
+            </ol>
+            <div class="barlist">
+        
+                {% for item in data_list %}
+                <div class="listbox1" id="{{item.id}}">
+                    <h2 class="data1">{{ item.aspect }}</h2>
+                    <hr>
+                    <div>
+                        <p class="data2">
+                        <p>
+                    </div>
+                    <div>
+                        <h5 class="data3">{{ item.text }}</h5>
+                    </div>
+                    <hr>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="pagination">
+                <span class="step-links">
+                    <div>
+                        <span class="current">
+                            Page {{ data_list.number }} of {{ data_list.paginator.num_pages }}.
+                        </span>
+                    </div>
+                    {% if data_list.has_previous %}
+                    <a href="?page={{ data_list.previous_page_number }}">&laquo; 上一页</a>
+                    {% else %}
+                    <span class="disabled">&laquo; 上一页</span>
+                    {% endif %}
+        
+                    {% if data_list.has_next %}
+                    <a href="?page={{ data_list.next_page_number }}">下一页 &raquo;</a>
+                    {% else %}
+                    <span class="disabled">下一页 &raquo;</span>
+                    {% endif %}
                 </span>
             </div>
-            {% if data_list.has_previous %}
-            <a href="?page={{ data_list.previous_page_number }}">&laquo; 上一页</a>
-            {% else %}
-            <span class="disabled">&laquo; 上一页</span>
-            {% endif %}
-
-            {% if data_list.has_next %}
-            <a href="?page={{ data_list.next_page_number }}">下一页 &raquo;</a>
-            {% else %}
-            <span class="disabled">下一页 &raquo;</span>
-            {% endif %}
-        </span>
-    </div>
+  </div>
+</section>
 </body>
+<script src="../static/js/index.js"></script>
+    <script>
+        var map = new BMap.Map("mapcontainer");
+        var point = new BMap.Point(62, 38.6844); 
+        map.centerAndZoom(point, 5.5);
+        map.enableScrollWheelZoom(true);
+    </script>
+    <script>
+        // 当页面完全加载完成时执行的函数
+        window.onload = function() {
+            // 检查是否有登录消息元素，以及它的内容是不是表示登录成功
+            var loginMessage = document.getElementById("loginMessage");
+            if (loginMessage) {
+                hidlogin(); // 调用 hidlogin 函数隐藏登录按钮
+            }
+        };
 
+        // 隐藏登录按钮的函数
+        function hidlogin() {
+            var loginbtn = document.getElementById("login");
+            if (loginbtn) {
+                loginbtn.style.display = "none";
+            }
+        }
+        function showlogin() {
+    // 显示登录按钮
+    var loginbtn = document.getElementById("login");
+    if (loginbtn) {
+        loginbtn.style.display = "block";
+    }
+
+    // 移除登录消息元素，模仿用户已经退出登录
+    var loginMessage = document.getElementById("loginMessage");
+    if (loginMessage) {
+        loginMessage.parentNode.removeChild(loginMessage);
+    }
+    
+}
+    </script>
 </html>
