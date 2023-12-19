@@ -48,13 +48,13 @@
                         <nav class="flex flex-col px-6 mt-4 space-y-1">
                             <a  href="#"class="text-gray-600 hover:text-gray-900 font-bold  text-lg ml-4">巴基斯坦时间：</a>
                             <a id="PakistanTime" href="#"class="text-gray-600 hover:text-gray-900 font-bold  larger-font1 ml-4"></a>
-                            <a href="#" onclick="addMarker(33.6844,73.0479);disFunction(event)"class="text-gray-600 hover:text-gray-900 hover:underline font-bold text-lg ml-4">伊斯兰堡 晴 66°C</a>
-                            <a href="#" onclick="addMarker(24.8607, 67.0011);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg hover:underline">卡拉奇 雨 66°C</a>
-                            <a href="#" onclick="addMarker(31.5820, 74.3294);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4 hover:underline">拉合尔 霾 66°C</a>
-                            <a href="#" onclick="addMarker(30.1636, 71.5254);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg hover:underline">木尔坦 雨 66°C</a>
-                            <a href="#" onclick="addMarker(34.01734, 71.5246);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4 hover:underline">白沙瓦 多云 66°C</a>
-                            <a href="#" onclick="addMarker(27.3364, 68.2413);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg hover:underline">莫克兰 晴 66°C</a>
-                            <a href="#" onclick="addMarker(25.11028, 62.33994);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4 hover:underline">瓜达尔港 毒 66°C</a>
+                            <a href="#" onclick="addMarker(33.6844,73.0479);disFunction(event)"class="text-gray-600 hover:text-gray-900 hover:underline font-bold text-lg ml-4">伊斯兰堡 <span id="yslb-weather"></span></a>
+                            <a href="#" onclick="addMarker(24.8607, 67.0011);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg hover:underline">卡拉奇<span id="klq-weather"></span></a>
+                            <a href="#" onclick="addMarker(31.5820, 74.3294);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4 hover:underline">拉合尔 <span id="lhe-weather"></span></a>
+                            <a href="#" onclick="addMarker(30.1636, 71.5254);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg hover:underline">木尔坦 <span id="met-weather"></span></a>
+                            <a href="#" onclick="addMarker(34.01734, 71.5246);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4 hover:underline">白沙瓦 <span id="bsw-weather"></span></a>
+                            <a href="#" onclick="addMarker(27.3364, 68.2413);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg hover:underline">莫克兰 <span id="mkl-weather"></span></a>
+                            <a href="#" onclick="addMarker(25.11028, 62.33994);disFunction(event)"class="text-gray-600 hover:text-gray-900 font-bold text-lg ml-4 hover:underline">瓜达尔港 <span id="gdeg-weather"></span></a>
                             <a href="#" class="text-gray-600 hover:text-gray-900 font-bold text-lg ">&nbsp;</a>
                         </nav>
                         <div id="mapcontainer" class="items-center"></div>
@@ -404,6 +404,59 @@
         var point = new BMap.Point(62, 38.6844); 
         map.centerAndZoom(point, 5.5);
         map.enableScrollWheelZoom(true);
+    </script>
+    <script>
+        const apiKey = 'b703f4192b9d4439ac23c863a80ea9df'; // 将YOUR_API_KEY替换为你的API Key
+        
+        // 城市代码
+        const locations = {
+            yisilanbao: '73.04,33.64',
+            kalaqi: '67.00,24.91',
+            laheer: '74.32,31.58',
+            muertan: '71.52,30.16',
+            baishawa: '71.52,34.01',
+            mokelan: '68.24,27.33',
+            guadaergang: '62.33,25.11'
+        };
+        
+        // 从API获取天气数据并在页面上显示
+        function fetchWeather(location, elementId) {
+            const url = `https://devapi.qweather.com/v7/weather/now?location=${location}&key=${apiKey}`;
+        
+            fetch(url)
+                .then(response => response.json()) // 将响应数据转换为JSON
+                .then(data => {
+                    if (data.code === "200") { // 确保返回代码是'200'表示查询成功
+                        const temperature = data.now.temp; // 获取温度
+                        const condition = data.now.text; // 获取天气状况
+                        displayWeather(temperature, condition, elementId); // 显示天气数据
+                    } else {
+                        console.error(`Error fetching weather for ${elementId}`, data.code);
+                    }
+                })
+                .catch(error => {
+                    console.error(`Error fetching weather for ${elementId}`, error);
+                });
+        }
+        
+        // 在网页上显示温度和天气状况
+        function displayWeather(temperature, condition, elementId) {
+            const weatherInfo = `
+                <span>${condition} ${temperature}°C</span>`;
+            document.getElementById(elementId).innerHTML = weatherInfo;
+        }
+        
+        // 页面加载完毕后获取各个城市的天气数据
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchWeather(locations.yisilanbao, 'yslb-weather');
+            fetchWeather(locations.kalaqi, 'klq-weather');
+            fetchWeather(locations.laheer, 'lhe-weather');
+            fetchWeather(locations.muertan, 'met-weather');
+            fetchWeather(locations.baishawa, 'bsw-weather');
+            fetchWeather(locations.mokelan, 'mkl-weather');
+            fetchWeather(locations.guadaergang, 'gdeg-weather');
+
+        });
     </script>
     <script>
         // 当页面完全加载完成时执行的函数
