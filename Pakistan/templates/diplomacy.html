@@ -42,19 +42,7 @@
 
         <li>
             <a href="#{{country}}">{{country}}</a>
-            <ul>
 
-                {% for record in test_records %}
-
-                {% if record.country == country %}
-                <li>
-                    <a href="#{{record.title}}">{{record.title}}</a>
-                </li>
-                {% endif %}
-
-                {% endfor %}
-
-            </ul>
         </li>
         {% endfor %}
 
