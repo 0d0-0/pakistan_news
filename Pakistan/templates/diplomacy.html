@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>巴基斯坦外交大事纪</title>
+    <title>巴基斯坦历史大事纪</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -53,31 +53,19 @@
       <div class="bg-white p-4 rounded ml-auto mr-auto flex justify-center"style="width: 85%">
           <div class="max-w-2xl mx-auto py-12 px-0">
             <div class="bar">
-                <h1>巴基斯坦·外交</h1>
+                <h1>The Diplomacy of Pakistan</h1>
             </div>
-            <div style="display: flex; justify-content: center;" class="my-4">
+            <div>
                 <h3>目录<h6>(点击下方目录即可跳转到相应内容)</h6>
                 </h3>
             </div>
-            <ul style="text-align: center;">
+            <ul>
         
                 {% for country in countries %}
         
                 <li>
                     <a href="#{{country}}">{{country}}</a>
-                    <ul>
         
-                        {% for record in test_records %}
-        
-                        {% if record.country == country %}
-                        <li>
-                            <a href="#{{record.title}}">{{record.title}}</a>
-                        </li>
-                        {% endif %}
-        
-                        {% endfor %}
-        
-                    </ul>
                 </li>
                 {% endfor %}
         
@@ -102,7 +90,7 @@
                 </div>
                 {% endfor %}
             </div>
-        </div>
+  </div>
 </section>
 </body>
 <script src="../static/js/index.js"></script>
