@@ -24,13 +24,13 @@
 <body class="bg-gray-100">
     <div class="flex">
         <div id="floatingWindow" class="floating-window">
-            <h2><p>&nbsp;超级汪汪队，出发！</p></h2>
+            <h2><p>&nbsp;超级汪汪队，出发！</p></h2>  
             <div onclick="hideFloatingWindow()" class="close-button action-button">
                 <button>&nbsp;出发！</button>
             </div>
         </div>
         <!-- Sidebar -->
-        <div id="myDiv" style="display: none;">
+        <div id="myDiv" style="display: none;">   <!--左侧侧边栏 点击云朵天气图案  有相应的城市及其天气-->
             <div class="bg-white shadow-md" style="width: 215px;">
                 <div class="flex flex-col justify-between h-full">
                     <div>
@@ -45,7 +45,7 @@
                             </div>
                         </div>
             
-                        <nav class="flex flex-col px-6 mt-4 space-y-1">
+                        <nav class="flex flex-col px-6 mt-4 space-y-1">  <!--有天气内容 点击某个城市 可在地图上切换到该地-->
                             <a  href="#"class="text-gray-600 hover:text-gray-900 font-bold  text-lg ml-4">巴基斯坦时间：</a>
                             <a id="PakistanTime" href="#"class="text-gray-600 hover:text-gray-900 font-bold  larger-font1 ml-4"></a>
                             <a href="#" onclick="addMarker(33.6844,73.0479);disFunction(event)"class="text-gray-600 hover:text-gray-900 hover:underline font-bold text-lg ml-4">伊斯兰堡 <span id="yslb-weather"></span></a>
@@ -90,8 +90,8 @@
                         </ul>
                     </nav>
                     <a href="https://pakistannews.cn/login/"><button id="login" class="bg-gray-200 text-black py-2 px-4 rounded ml-4">登录</button></a>
-                    {% if request.user.is_authenticated %}
-                    {% if request.user.is_superuser %}
+                    {% if request.user.is_authenticated %}<!--是否是正确用户-->
+                    {% if request.user.is_superuser %}<!--是否是超级用户-->
                         <p onclick="showlogin()" id="loginMessage" title="退出登入" class="hover:underline hover:bg-gray-200 rounded">管理员 {{ request.user.username }} 已登入</p>
                     {% else %}
                         <p onclick="showlogin()" id="loginMessage" title="退出登入" class="hover:underline hover:bg-gray-200 rounded">用户 {{ request.user.username }} 已登入</p>
@@ -103,7 +103,7 @@
             <!-- Page content -->
             <section class="my-4 mx-6 ">
                 <div class="bg-white p-4 rounded w-90 ml-4">
-                     <!-- 图片轮播 -->
+                     <!-- 图片轮播 点击对应图片可以跳转到文字对应的板块-->
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <a href="#">
@@ -378,7 +378,7 @@
                             </div>
                         </div>
                     </div>          
-                    <!-- 换页按钮 -->
+                    <!-- 换页按钮 点击可跳转到对应页-->
                     <div class="py-4">
                         <div class="flex justify-center">
                           <div class="flex rounded-md">
