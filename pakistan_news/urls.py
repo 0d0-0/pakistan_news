@@ -19,12 +19,13 @@ from django.urls import path
 from Pakistan import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('index/', views.index),
-    path('', views.index),
-    path('history/', views.history),
-    path('culture/', views.culture),
-    path('diplomacy/', views.diplomacy),
+    path('admin/', admin.site.urls),  #后台
+    path('index/', views.index),  #https://pakistannews.cn/indx/也可进入主页面
+    path('', views.index),  #https://pakistannews.cn/ 即可进入主页面
+    path('history/', views.history),  #历史页面 链接
+    path('culture/', views.culture),  #文化
+    path('diplomacy/', views.diplomacy),  #外交
     path('login/', views.login_or_register, name='login_or_register'),
+    #登录 或 注册 页面
 ]
                                                                                                                         
