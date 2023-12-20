@@ -21,6 +21,7 @@ def __str__(self):
     """返回一个表示条目的简单字符串"""
 
 class Logo(models.Model):  #显示在admin模块里 主题
+    title = models.TextField(default='超级Django汪汪队')
     def __str__ (self):    
         """返回模型的字符串表示"""
         return f'这里是刘一凡凡队'
