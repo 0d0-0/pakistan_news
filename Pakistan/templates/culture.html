@@ -8,7 +8,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    </link>
     <link rel="stylesheet" href="../static/css/index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     </link>
@@ -17,132 +18,141 @@
 
 <body>
     <!-- 顶部导航栏 -->
-    <header class="text-gray-700 py-4">  
-      <div class="container mx-auto flex justify-between items-center px-6">
-          <a href="https://pakistannews.cn/"><div class="text-3xl font-bold">巴基斯坦の小站</div></a>
-          <nav>
-              <ul class="flex space-x-8 ml-20">
-                  <li class="hover:bg-gray-200 rounded hover:underline">
-                      <a href="https://pakistannews.cn/index/">首页</a>
-                  </li>
-                  <li class="hover:bg-gray-200 rounded hover:underline">
-                      <a href="https://pakistannews.cn/culture/">文化</a>
-                  </li>
-                  <li class="hover:bg-gray-200 rounded hover:underline">
-                      <a href="https://pakistannews.cn/history/">历史</a>
-                  </li>
-                  <li class="hover:bg-gray-200 rounded hover:underline">
-                      <a href="https://pakistannews.cn/diplomacy/">外交</a>
-                  </li>
-                  <li onclick="showFloatingWindow()"class="hover:bg-gray-200 rounded hover:underline">
-                      <a href="#">关于我们</a>
-                  </li>
-              </ul>
-          </nav>
-          <a href="https://pakistannews.cn/login/"><button id="login" class="bg-gray-200 text-black py-2 px-4 rounded ml-4">登录</button></a>
-          {% if request.user.is_authenticated %}
-          {% if request.user.is_superuser %}
-              <p onclick="showlogin()" id="loginMessage" title="退出登入" class="hover:underline hover:bg-gray-200 rounded">管理员 {{ request.user.username }} 已登入</p>
-          {% else %}
-              <p onclick="showlogin()" id="loginMessage" title="退出登入" class="hover:underline hover:bg-gray-200 rounded">用户 {{ request.user.username }} 已登入</p>
-          {% endif %}
-          {% endif %}
-      </div>
+    <header class="text-gray-700 py-4">
+        <div class="container mx-auto flex justify-between items-center px-6">
+            <a href="https://pakistannews.cn/">
+                <div class="text-3xl font-bold">巴基斯坦の小站</div>
+            </a>
+            <nav>
+                <ul class="flex space-x-8 ml-20">
+                    <li class="hover:bg-gray-200 rounded hover:underline">
+                        <a href="https://pakistannews.cn/index/">首页</a>
+                    </li>
+                    <li class="hover:bg-gray-200 rounded hover:underline">
+                        <a href="https://pakistannews.cn/culture/">文化</a>
+                    </li>
+                    <li class="hover:bg-gray-200 rounded hover:underline">
+                        <a href="https://pakistannews.cn/history/">历史</a>
+                    </li>
+                    <li class="hover:bg-gray-200 rounded hover:underline">
+                        <a href="https://pakistannews.cn/diplomacy/">外交</a>
+                    </li>
+                    <li onclick="showFloatingWindow()" class="hover:bg-gray-200 rounded hover:underline"> <!--点击显示弹窗-->
+                        <a href="#">关于我们</a>
+                    </li>
+                </ul>
+            </nav>
+            <a href="https://pakistannews.cn/login/"><button id="login"
+                    class="bg-gray-200 text-black py-2 px-4 rounded ml-4">登录</button></a>
+            {% if request.user.is_authenticated %} <!--是否是正确用户-->
+            {% if request.user.is_superuser %} <!--是否是超级用户-->
+            <p onclick="showlogin()" id="loginMessage" title="退出登入" class="hover:underline hover:bg-gray-200 rounded">
+                管理员 {{ request.user.username }} 已登入</p>
+            <!--点击右上角登录信息就退出登录 重新显示登录按钮-->
+            {% else %}
+            <!--点击右上角登录信息就退出登录 重新显示登录按钮-->
+            <p onclick="showlogin()" id="loginMessage" title="退出登入" class="hover:underline hover:bg-gray-200 rounded">用户
+                {{ request.user.username }} 已登入</p>
+            {% endif %}
+            {% endif %}
+        </div>
     </header>
     <section class="my-4 mx-6 ">
-      <div class="bg-white p-4 rounded ml-auto mr-auto flex justify-center"style="width: 85%">
-          <div class="max-w-2xl mx-auto py-12 px-0">
-            <div class="bar">
-                <h1>巴基斯坦·文化</h1>
-            </div>
-            <div style="display: flex; justify-content: center;" class="my-4">
-                <h3>目录<h6>(点击下方目录即可跳转到相应内容)</h6>
-                </h3>
-            </div>
-            <ol style="text-align: center;">
-        
-                {% for item in data_list %}
-                <li><a href="#{{item.id}}">{{item.aspect}}</a></li>
-                {% endfor %}
-        
-            </ol>
-            <div class="barlist">
-        
-                {% for item in data_list %}
-                <div class="listbox1" id="{{item.id}}">
-                    <h2 class="data1">{{ item.aspect }}</h2>
-                    <hr>
-                    <div>
-                        <p class="data2">
-                        <p>
-                    </div>
-                    <div>
-                        <h5 class="data3">{{ item.text }}</h5>
-                    </div>
-                    <hr>
+        <div class="bg-white p-4 rounded ml-auto mr-auto flex justify-center" style="width: 85%">
+            <div class="max-w-2xl mx-auto py-12 px-0">
+                <div class="bar">
+                    <h1>巴基斯坦·文化</h1>
                 </div>
-                {% endfor %}
-            </div>
-            <div class="pagination">
-                <span class="step-links">
-                    <div>
-                        <span class="current">
-                            Page {{ data_list.number }} of {{ data_list.paginator.num_pages }}.
-                        </span>
+                <div style="display: flex; justify-content: center;" class="my-4">
+                    <h3>目录<h6>(点击下方目录即可跳转到相应内容)</h6>
+                    </h3>
+                </div>
+                <ol style="text-align: center;">
+                    <!--锚点跳转到相应内容-->
+                    {% for item in data_list %}
+                    <li><a href="#{{item.id}}">{{item.aspect}}</a></li>
+                    {% endfor %}
+
+                </ol>
+                <div class="barlist">
+                    <!--for循环 结合views.py中的翻页相关功能  每页放五条内容 可以点击上一页 下一页翻页-->
+                    {% for item in data_list %}
+                    <div class="listbox1" id="{{item.id}}">
+                        <h2 class="data1">{{ item.aspect }}</h2>
+                        <hr>
+                        <div>
+                            <p class="data2">
+                            <p>
+                        </div>
+                        <div>
+                            <h5 class="data3">{{ item.text }}</h5>
+                        </div>
+                        <hr>
                     </div>
-                    {% if data_list.has_previous %}
-                    <a href="?page={{ data_list.previous_page_number }}">&laquo; 上一页</a>
-                    {% else %}
-                    <span class="disabled">&laquo; 上一页</span>
-                    {% endif %}
-        
-                    {% if data_list.has_next %}
-                    <a href="?page={{ data_list.next_page_number }}">下一页 &raquo;</a>
-                    {% else %}
-                    <span class="disabled">下一页 &raquo;</span>
-                    {% endif %}
-                </span>
+                    {% endfor %}
+                </div>
+                <!--翻页 第一页 时  上一页按键失效  最后一页时 下一页按键失效-->
+                <div class="pagination">
+                    <span class="step-links">
+                        <div>
+                            <span class="current">
+                                Page {{ data_list.number }} of {{ data_list.paginator.num_pages }}.
+                            </span>
+                        </div>
+                        {% if data_list.has_previous %}
+                        <a href="?page={{ data_list.previous_page_number }}">&laquo; 上一页</a>
+                        {% else %}
+                        <span class="disabled">&laquo; 上一页</span>
+                        {% endif %}
+
+                        {% if data_list.has_next %}
+                        <a href="?page={{ data_list.next_page_number }}">下一页 &raquo;</a>
+                        {% else %}
+                        <span class="disabled">下一页 &raquo;</span>
+                        {% endif %}
+                    </span>
+                </div>
             </div>
-  </div>
-</section>
+    </section>
 </body>
 <script src="../static/js/index.js"></script>
-    <script>
-        var map = new BMap.Map("mapcontainer");
-        var point = new BMap.Point(62, 38.6844); 
-        map.centerAndZoom(point, 5.5);
-        map.enableScrollWheelZoom(true);
-    </script>
-    <script>
-        // 当页面完全加载完成时执行的函数
-        window.onload = function() {
-            // 检查是否有登录消息元素，以及它的内容是不是表示登录成功
-            var loginMessage = document.getElementById("loginMessage");
-            if (loginMessage) {
-                hidlogin(); // 调用 hidlogin 函数隐藏登录按钮
-            }
-        };
-
-        // 隐藏登录按钮的函数
-        function hidlogin() {
-            var loginbtn = document.getElementById("login");
-            if (loginbtn) {
-                loginbtn.style.display = "none";
-            }
+<script>
+    var map = new BMap.Map("mapcontainer");
+    var point = new BMap.Point(62, 38.6844);
+    map.centerAndZoom(point, 5.5);
+    map.enableScrollWheelZoom(true);
+</script>
+<script>
+    // 当页面完全加载完成时执行的函数
+    window.onload = function () {
+        // 检查是否有登录消息元素，以及它的内容是不是表示登录成功
+        var loginMessage = document.getElementById("loginMessage");
+        if (loginMessage) {
+            hidlogin(); // 调用 hidlogin 函数隐藏登录按钮
         }
-        function showlogin() {
-    // 显示登录按钮
-    var loginbtn = document.getElementById("login");
-    if (loginbtn) {
-        loginbtn.style.display = "block";
-    }
+    };
 
-    // 移除登录消息元素，模仿用户已经退出登录
-    var loginMessage = document.getElementById("loginMessage");
-    if (loginMessage) {
-        loginMessage.parentNode.removeChild(loginMessage);
+    // 隐藏登录按钮的函数
+    function hidlogin() {
+        var loginbtn = document.getElementById("login");
+        if (loginbtn) {
+            loginbtn.style.display = "none";
+        }
     }
-    
-}
-    </script>
+    function showlogin() {
+        // 显示登录按钮
+        var loginbtn = document.getElementById("login");
+        if (loginbtn) {
+            loginbtn.style.display = "block";
+        }
+
+        // 移除登录消息元素，模仿用户已经退出登录
+        var loginMessage = document.getElementById("loginMessage");
+        if (loginMessage) {
+            loginMessage.parentNode.removeChild(loginMessage);
+        }
+
+    }
+</script>
+
 </html>
