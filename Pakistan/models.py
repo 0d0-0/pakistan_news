@@ -20,6 +20,11 @@ class Entry(models.Model):
 def __str__(self):
     """返回一个表示条目的简单字符串"""
 
+class Logo(models.Model):  #显示在admin模块里 主题
+    def __str__ (self):    
+        """返回模型的字符串表示"""
+        return self.text
+
 #在终端管理员中  ssh root@159.138.136.13
 #cd python/pakistan_news/
 #sqlite3 db.sqlite3
