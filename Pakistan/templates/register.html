@@ -20,9 +20,9 @@
             <h1 class="text-2xl font-semibold">注册用户账号</h1>
         </div>
 
-        <form action="">
+        <form action="">   <!--表单包括用户名 密码 和 确认密码-->
             <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-medium mb-2" for="username">
+                <label class="block text-gray-700 text-sm font-medium mb-2" for="username">   
                     username
                 </label>
                 <input
@@ -48,10 +48,10 @@
             <div class="flex items-center justify-between">
                 <button
                     class="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    type="submit ">
+                    type="submit ">     <!--确认按钮-->
                     确认
                 </button>
-                <span style="color:purple;">{{error}}</span>
+                <span style="color:purple;">{{error}}</span>   <!--传递参数  会报错-->
             </div>
         </form>
     </div>
