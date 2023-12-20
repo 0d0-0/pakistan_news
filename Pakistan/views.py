@@ -5,16 +5,9 @@ from datetime import datetime
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import User
 from django.contrib import messages
-from django.contrib.auth import authenticate
 from django.contrib.auth import authenticate, login, logout
-# Create your views here.
-import time
-def welcome(request):
-    if request.method == "GET":
-        return render(request, 'welcome.html')
 
-
-def index(request):  # 目录
+def index(request):  # 目录页
     if request.method == "GET":
         # 从会话中检索用户登录状态信息
         user_username = request.session.get('dengru', None)
@@ -25,10 +18,10 @@ def index(request):  # 目录
         # 传递 context 到模板
         return render(request, 'index.html', context)
 
-def history(request):  # 历史
+def history(request):  # 历史板块
     if request.method == "GET":
         user_username = request.session.get('dengru', None)
-        # 把数据先放进test_records中
+        # 把数据先放进test_records，后逐条放入数据库 最后从数据库中调出数据放入网页中
         test_records = [
             History(times='旧石器时代',
                     text='Soanian 是旧石器时代下部 Acheulean 的考古文化。它以现代伊斯兰堡/拉瓦尔品第附近的西瓦利克山的索安山谷命名。在距离拉瓦尔品第约16公里(9.9英里)的阿迪亚拉和卡萨拉，在索安河的拐弯处发现了数百个锋利的卵石工具。'),
@@ -81,25 +74,23 @@ H.G. Rowlinson评论道:
             obj, created = History.objects.get_or_create(times=record.times, defaults={'text': record.text})
             if not created:  # 如果没有添加进数据库 就添加  添加过的如果有所变化  就更新
                 obj.text = record.text  # 把新的正文内容放进去
-                obj.save()  # 保存更新过的
+                obj.save()  # 保存进数据库
         data_list = History.objects.all()  # 把数据库里的数据都拿出来
-        page = request.GET.get('page', 1)
-        paginator = Paginator(data_list, 5)  # Show 10 items per page
-        try:
-            items = paginator.page(page)
+        page = request.GET.get('page', 1)    #从第一页开始
+        paginator = Paginator(data_list, 5)  # 每页五条记录
+        try:  #处理有可能的错误情况
+            items = paginator.page(page)   
         except PageNotAnInteger:
-            # 如果page不是数字  显示第一页
-            items = paginator.page(1)
+            items = paginator.page(1)  # 如果page不是数字  显示第一页
         except EmptyPage:
-            # 如果page超出范围  显示最后一页
-            items = paginator.page(paginator.num_pages)
-        context = {'dengru': user_username,'data_list': items,}
+            items = paginator.page(paginator.num_pages)# 如果page超出范围  显示最后一页
+        context = {'dengru': user_username,'data_list': items,}   #显示登陆情况
         return render(request, 'history.html', context)
 
 
-def diplomacy(request):
+def diplomacy(request):  
     if request.method == "GET":
-        # 把数据先放进test_records中
+        # 把数据先放进test_records，后逐条放入数据库 最后从数据库中调出数据放入网页中
         test_records = [
             Diplomacy(country='巴基斯坦-美国', title='''冷战期间''',
                       text='''1958年巴基斯坦军事政变后，阿尤布·汗改变了原来的不结盟立场，改为亲西方，先后加入了中央条约组织和东南亚条约组织。并在中美关系正常化时发挥了中介作用。随着苏联入侵阿富汗，其在资助阿富汗圣战者中也起到关键作用。然而随着苏联解体和冷战结束，巴基斯坦的地缘政治作用下降，美巴关系随之冷却。'''),
@@ -165,25 +156,23 @@ def diplomacy(request):
             Diplomacy(country='巴基斯坦—土耳其', title='''首脑外交''', text='''巴基斯坦国父穆罕默德·阿里·真纳对土耳其国父穆斯塔法·凯末尔·阿塔图尔克有仰慕、钦佩的情谊，并希望按照土耳其的现代主义模式发展巴基斯坦。同样，追随真纳和穆罕默德·伊克巴勒的脚步发展的现代化伊斯兰巴基斯坦和所有其他所谓的主义都曾被传统的巴基斯坦人民排斥。 巴基斯坦前总统佩尔韦兹·穆沙拉夫也表达了类似想法，他在土耳其长大并在当地接受过广泛的军事训练。 真纳在土耳其被誉为“伟大领袖”，土耳其首都安卡拉的一条主要道路真纳大道（英语：）即以其命名，而巴基斯坦主要城市伊斯兰堡、卡拉奇、拉合尔、白沙瓦和拉尔卡纳皆有重要道路以土耳其之父“阿塔图尔克”命名。2009年10月26日，
                       土耳其总统雷杰普·塔伊普·埃尔多安被授予巴基斯坦最高公民奖章（英语：），是第四位在巴基斯坦议会发表讲话的国际领袖。'''),
         ]
-        for record in test_records:
+        for record in test_records:     #遍历   
 
             obj, created = Diplomacy.objects.get_or_create(title=record.title, defaults={'text': record.text})
-            if not created:  # 如果没有添加进数据库 就添加  添加过的如果有所变化  就更新
-                obj.text = record.text  # 把新的正文内容放进去
-                obj.title = record.title  # 保存新的更新时间
-                obj.save()  # 保存更新过的
+            if not created:  # 如果没有添加进数据库 就添加 
+                obj.text = record.text  # 把正文内容放进去
+                obj.title = record.title  #放入标题
+                obj.save() 
         data_list = Diplomacy.objects.all()  # 把数据库里的数据都拿出来
         page = request.GET.get('page', 1)
-        paginator = Paginator(data_list, 3)  # Show 10 items per page
+        paginator = Paginator(data_list, 3)  #每个国家下面三条内容
         try:
             items = paginator.page(page)
         except PageNotAnInteger:
-            # 如果page不是数字  显示第一页
-            items = paginator.page(1)
+            items = paginator.page(1)# 如果page不是数字  显示第一页
         except EmptyPage:
-            # 如果page超出范围  显示最后一页
-            items = paginator.page(paginator.num_pages)
-        countries = []
+            items = paginator.page(paginator.num_pages) # 如果page超出范围  显示最后一页
+        countries = []  #用于前端模板中判断国家
         countries.append('巴基斯坦-美国')
         countries.append('巴基斯坦-中国')
         countries.append('巴基斯坦-印度')
@@ -195,7 +184,7 @@ def diplomacy(request):
 
 def culture(request):
     if request.method == "GET":
-        # 把数据先放进test_records中
+        # 把数据先放进test_records，后逐条放入数据库 最后从数据库中调出数据放入网页中
         test_records = [
             Culture(aspect='南亚卡车艺术', text='''南亚卡车艺术（英语：Truck art in South Asia）是一种流行的地区装饰（regional decoration）形式，卡车上有精致的花卉图案及书法艺术。它尤其于巴基斯坦及印度甚为常见。
 
@@ -313,13 +302,13 @@ def culture(request):
         for record in test_records:
 
             obj, created = Culture.objects.get_or_create(aspect=record.aspect, defaults={'text': record.text})
-            if not created:  # 如果没有添加进数据库 就添加  添加过的如果有所变化  就更新
-                obj.text = record.text  # 把新的正文内容放进去
-                obj.aspect = record.aspect  # 保存新的更新时间
-                obj.save()  # 保存更新过的
+            if not created:  # 如果没有添加进数据库 就添加 
+                obj.text = record.text  # 把正文内容放进去
+                obj.aspect = record.aspect #保存文化层面
+                obj.save()  # 保存
         data_list = Culture.objects.all()  # 把数据库里的数据都拿出来
         page = request.GET.get('page', 1)
-        paginator = Paginator(data_list, 5)  # Show 10 items per page
+        paginator = Paginator(data_list, 5)  # 一页五条内容
         try:
             items = paginator.page(page)
         except PageNotAnInteger:
@@ -328,77 +317,40 @@ def culture(request):
         except EmptyPage:
             # 如果page超出范围  显示最后一页
             items = paginator.page(paginator.num_pages)
-
         return render(request, 'culture.html', {'data_list': items})
 
 
-# def login(request):
-#     if request.method == "GET":
-#         return render(request, "login.html")
-
-#     username = request.POST.get("username")
-#     password = request.POST.get("password")
-
-#     # 查询数据库中是否存在匹配的用户名和密码
-#     try:
-#         user = User.objects.get(username=username, password=password)
-#         # 登录成功，可以进行后续处理
-#         return redirect("http://pakistannews.cn/index/")
-#     except User.DoesNotExist:
-#         return render(request, "login.html", {"error": "用户名或密码错误，请重新输入"})
-
-# def register(request):
-#     if request.method == "GET":
-#         return render(request, "register.html")
-
-#     username = request.POST.get("username")
-#     password = request.POST.get("password")
-#     confirmpassword = request.POST.get("confirmpassword")
-
-#     if confirmpassword == password:
-#         # 创建用户并保存到数据库
-#         user = User(username=username, password=password)
-#         user.save()
-#         return redirect(reverse('login'))
-
-#     return render(request, "register.html", {"error": "两次输入的密码不一致，请重新输入"})
-
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
-from django.contrib.auth.models import User
-
-def login_or_register(request):
+def login_or_register(request):   #处理登录和注册  
     context = {}  # 定义一个空字典来传递信息到模板
     context = {'show_register': False}  # 默认显示登录表单
     if request.method == 'POST':
-        action = request.POST.get('action')
+        action = request.POST.get('action')   #得到表格类型
 
-        if action == 'register':
+        if action == 'register':    
             username = request.POST.get("username1")
             password = request.POST.get("password1")
-            confirmpassword = request.POST.get("confirmpassword")
+            confirmpassword = request.POST.get("confirmpassword")   #如果是注册 得到用户名 密码 和确认密码
             
-            if confirmpassword == password:
-                if User.objects.filter(username=username).exists():
+            if confirmpassword == password:#判断密码 和确认密码是否一致
+                if User.objects.filter(username=username).exists():   #如果用户名存在  就报错
                     context['zhuce'] = '用户名已存在'
-                    context['show_register'] = True
+                    context['show_register'] = True   #清空注册内容 重新注册
                 else:
-                    user = User.objects.create_user(username=username, password=password)
+                    user = User.objects.create_user(username=username, password=password)   
                     context['dengru'] = '注册成功，请登录'
             else:
-                context['zhuce'] = "两次的密码不一致"
+                context['zhuce'] = "两次的密码不一致"   
                 context['show_register'] = True  # 如果有错误，初始显示注册表单
 
-        elif action == 'login':
+        elif action == 'login':   #登录 就得到表单
             username = request.POST.get("username2")
             password = request.POST.get("password2")
-            user = authenticate(username=username, password=password)
+            user = authenticate(username=username, password=password)   
             
-            if user is not None:
+            if user is not None:   #如果user在后台存在且正确  就登陆成功
                login(request, user)
                request.session['dengru'] = user.username  # 设置session变量
-               return redirect('https://pakistannews.cn')
+               return redirect('https://pakistannews.cn')   #再次跳回首页
             else:
                 context['dengru'] = "用户名或密码错误"
-
     return render(request, "login.html", context)
