@@ -23,7 +23,7 @@ def __str__(self):
 class Logo(models.Model):  #显示在admin模块里 主题
     def __str__ (self):    
         """返回模型的字符串表示"""
-        return self.text
+        return f'这里是刘一凡凡队'
 
 #在终端管理员中  ssh root@159.138.136.13
 #cd python/pakistan_news/
