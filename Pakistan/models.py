@@ -22,10 +22,8 @@ def __str__(self):
 
 class Logo(models.Model):  #显示在admin模块里 主题
     title = models.TextField(default='超级Django汪汪队')
-    def __str__ (self):    
-        """返回模型的字符串表示"""
-        return f'这里是刘一凡凡队'
-
+    class Meta:
+        verbose_name_plural = 'Logo'
 #在终端管理员中  ssh root@159.138.136.13
 #cd python/pakistan_news/
 #sqlite3 db.sqlite3
