@@ -117,4 +117,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-SIMPLEUI_LOGO = 'https://tse3-mm.cn.bing.net/th/id/OIP-C.G3C6ql2Qpe1Ta2Rs7HEa3gHaEK?rs=1&pid=ImgDetMain'
+SIMPLEUI_LOGO = 'https://pic.imgdb.cn/item/6582a103c458853aefae32c8.png'
